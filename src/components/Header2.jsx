@@ -7,6 +7,7 @@ export default function Header2() {
     <Box
       minW={"100%"}
       display={"flex"}
+      bgColor={'#0b223a'}
       // gap={3}
       justifyContent={"space-between"}
       alignItems={"center"}
@@ -19,7 +20,7 @@ export default function Header2() {
         cursor={"pointer"}
       ></Image>
       {isLargerThan980 ? (
-        <UnorderedList display={"flex"} gap={4}>
+        <UnorderedList display={"flex"} gap={4} color={'white'}>
           <NavLink to="#">Home</NavLink>
           <NavLink to="#">About Us</NavLink>
           <NavLink to="#">Packages</NavLink>

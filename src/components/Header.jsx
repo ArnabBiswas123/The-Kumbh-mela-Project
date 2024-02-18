@@ -32,7 +32,7 @@ export default function Header() {
             w={"20px"}
           ></Image>
           <Text whiteSpace="nowrap">
-            P 9 First Floor, Padhav Nagar, Mayur Vihar,Delhi
+          8035, 120 st suit no 203, Delta, BC , Canada
           </Text>{" "}
         </Box>
         <Box display={"flex"} color={"white"} gap={1} cursor={"pointer"}>
