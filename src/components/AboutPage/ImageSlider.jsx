@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from "react";
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 
+
 export default function ImageSlider(){
   const arrowStyles = {
     cursor: "pointer",

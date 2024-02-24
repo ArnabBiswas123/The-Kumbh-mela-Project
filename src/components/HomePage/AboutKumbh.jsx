@@ -47,7 +47,7 @@ export default function AboutKumbh() {
           <LazyLoadImage src="./assets/AboutKumbh.jpg"   style={{height:'300px', width:'300px', borderRadius:'2%'}}></LazyLoadImage>
         </Box>
 
-        <Text color={"white"} h={"10%"} w={"50%"} cursor={"pointer"} onClick={()=>{navigate('/kumbhinfo')}}>
+        <Text    color={"white"} h={"10%"} w={"50%"} cursor={"pointer"} textDecoration="underline" onClick={()=>{navigate('/kumbhinfo')}}>
           View Details
         </Text>
       </Box>

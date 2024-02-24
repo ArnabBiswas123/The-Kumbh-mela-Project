@@ -1,14 +1,14 @@
 import React from "react";
-import MainImage from "../components/MainImage";
-import AboutKumbh from "../components/AboutKumbh";
-import KumbhDates from "../components/KumbhDates";
-import KumbhMelaAccommodation from "../components/KumbhMelaAccommodation";
-import KumbhMelaPackages from "../components/KumbhMelaPackages";
+import MainImage from "../components/HomePage/MainImage";
+import AboutKumbh from "../components/HomePage/AboutKumbh";
+import KumbhDates from "../components/HomePage/KumbhDates";
+import KumbhMelaAccommodation from "../components/HomePage/KumbhMelaAccommodation";
+import KumbhMelaPackages from "../components/HomePage/KumbhMelaPackages";
 import { useMediaQuery } from "@chakra-ui/react";
-import Header from "../components/Header";
-import Header2 from "../components/Header2";
-import MobileHeader from "../components/MobileHeader";
-import Footer from "../components/Footer";
+import Header from "../components/common/Header";
+import Header2 from "../components/common/Header2";
+import MobileHeader from "../components/common/MobileHeader";
+import Footer from "../components/common/Footer";
 
 export default function HomePage() {
   const [isLargerThan980] = useMediaQuery("(min-width: 980px)");
