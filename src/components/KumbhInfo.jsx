@@ -19,7 +19,7 @@ export default function KumbhInfo() {
         >
           About Kumbh Mela
         </Heading>
-        <Text fontFamily="Georgia, serif" fontSize="lg" lineHeight="taller">
+        <Text fontFamily="Georgia, serif" fontSize="lg" lineHeight="taller"  m={8}>
           Kumbh Mela (the festival of the sacred Pitcher) is the largest
           peaceful congregation of pilgrims on earth, during which participants
           bathe or take a dip in a sacred river. Devotees believe that by
