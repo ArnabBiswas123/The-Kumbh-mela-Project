@@ -1,9 +1,9 @@
-import React from 'react'
-import MainImage from '../components/MainImage';
-import AboutKumbh from '../components/AboutKumbh';
-import KumbhDates from '../components/KumbhDates';
-import KumbhMelaAccommodation from '../components/KumbhMelaAccommodation';
-import KumbhMelaPackages from '../components/KumbhMelaPackages';
+import React from "react";
+import MainImage from "../components/MainImage";
+import AboutKumbh from "../components/AboutKumbh";
+import KumbhDates from "../components/KumbhDates";
+import KumbhMelaAccommodation from "../components/KumbhMelaAccommodation";
+import KumbhMelaPackages from "../components/KumbhMelaPackages";
 import { useMediaQuery } from "@chakra-ui/react";
 import Header from "../components/Header";
 import Header2 from "../components/Header2";
@@ -15,14 +15,14 @@ export default function HomePage() {
 
   return (
     <>
-       {!isLargerThan980 ? <MobileHeader></MobileHeader> : <Header></Header>}
+      {!isLargerThan980 ? <MobileHeader></MobileHeader> : <Header></Header>}
       <Header2></Header2>
-    <MainImage></MainImage>
-    <KumbhDates></KumbhDates>
-    <AboutKumbh></AboutKumbh>
-    <KumbhMelaPackages></KumbhMelaPackages>
-    <KumbhMelaAccommodation></KumbhMelaAccommodation>
-    <Footer></Footer>
+      <MainImage></MainImage>
+      <KumbhDates></KumbhDates>
+      <AboutKumbh></AboutKumbh>
+      <KumbhMelaPackages></KumbhMelaPackages>
+      <KumbhMelaAccommodation></KumbhMelaAccommodation>
+      <Footer></Footer>
     </>
-  )
+  );
 }
