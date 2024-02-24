@@ -5,7 +5,7 @@ import Sections from '../components/KumbhAdmin/Sections'
 
 export default function KumbhAdmin() {
   return (
-    <Box w={"100vw"} h={"100vh"} bgColor={"#FFDEAD"}>
+    <Box w={"100vw"} minH={"100vh"} bgColor={"#FFDEAD"} overflow={'hidden'}>
           <AdminHeader></AdminHeader>
           <Text
           fontWeight={"bold"}
