@@ -15,9 +15,10 @@ export default function KumbhMelaPackages() {
       <Text
         fontWeight={"bold"}
         textAlign={"center"}
-        fontFamily="'Noto Sans', sans-serif"
+       
         fontSize={25}
         m={"2%"}
+        fontFamily="Georgia, serif" 
       >
         KUMBH MELA PACKAGES
       </Text>
@@ -30,16 +31,25 @@ export default function KumbhMelaPackages() {
         gap={3}
         mb={"5%"}
       >
-        <Card maxW={["90%","60%","50%","20%"]} maxH={["40%","40%","40%","40%"]} p={0} backgroundColor={"white"} shadow={'dark-lg'}>
+        <Card
+          maxW={["90%", "60%", "50%", "20%"]}
+          maxH={["40%", "40%", "40%", "40%"]}
+          p={0}
+          backgroundColor={"white"}
+          shadow={"dark-lg"}
+          cursor={'pointer'}
+          _hover={{ transform: 'scale(1.02)' }}
+        transition="transform 0.3s ease-in-out"
+        >
           <LazyLoadImage
             src="./assets/Packages.jpg"
             alt="packages"
-            style={{height:'200px', borderRadius:'2%'}}
+            style={{ height: "200px", borderRadius: "2%" }}
           ></LazyLoadImage>
           <CardBody>
             <Stack>
-              <Heading size="md">Kumbh Mela Package 1 Nights 2 Days</Heading>
-              <Text>
+              <Heading fontFamily="Georgia, serif"  size="md">Kumbh Mela Package 1 Nights 2 Days</Heading>
+              <Text fontFamily="Georgia, serif" fontSize="md">
                 In this bundle of 1 nights and 2 days Kumbh Mela Tour Package in
                 Prayagraj 2025, youll embark on a journey towards Nirv
               </Text>
@@ -58,18 +68,27 @@ export default function KumbhMelaPackages() {
           </CardFooter>
         </Card>
 
-        <Card maxW={["90%","60%","50%","20%"]} maxH={["40%","40%","40%","40%"]} p={0} backgroundColor={"white"} shadow={'dark-lg'}>
+        <Card
+          maxW={["90%", "60%", "50%", "20%"]}
+          maxH={["40%", "40%", "40%", "40%"]}
+          p={0}
+          backgroundColor={"white"}
+          shadow={"dark-lg"}
+          cursor={'pointer'}
+          _hover={{ transform: 'scale(1.02)' }}
+        transition="transform 0.3s ease-in-out"
+        >
           <LazyLoadImage
             src="./assets/Package2.jpg"
             alt="packages"
-            style={{height:'200px', borderRadius:'2%'}}
+            style={{ height: "200px", borderRadius: "2%" }}
             borderTopRadius={"md"}
             // loading="lazy"
           ></LazyLoadImage>
           <CardBody>
             <Stack>
-              <Heading size="md">Kumbh Mela Package 2 Nights 3 Days</Heading>
-              <Text>
+              <Heading fontFamily="Georgia, serif" size="md">Kumbh Mela Package 2 Nights 3 Days</Heading>
+              <Text fontFamily="Georgia, serif" fontSize="md">
                 Come and savor every bit of spirituality at Kumbh Mela with our
                 2 nights 3 days Kumbh Mela Package. Plan your Kumbh Mela
               </Text>
@@ -88,17 +107,26 @@ export default function KumbhMelaPackages() {
           </CardFooter>
         </Card>
 
-        <Card maxW={["90%","60%","50%","20%"]} maxH={["40%","40%","40%","40%"]} p={0} backgroundColor={"white"} shadow={'dark-lg'}>
+        <Card
+          maxW={["90%", "60%", "50%", "20%"]}
+          maxH={["40%", "40%", "40%", "40%"]}
+          p={0}
+          backgroundColor={"white"}
+          shadow={"dark-lg"}
+          cursor={'pointer'}
+          _hover={{ transform: 'scale(1.02)' }}
+        transition="transform 0.3s ease-in-out"
+        >
           <LazyLoadImage
             src="./assets/Package3.jpg"
             alt="packages"
-            style={{height:'200px', borderRadius:'2%'}}
+            style={{ height: "200px", borderRadius: "2%" }}
           ></LazyLoadImage>
           <CardBody>
             <Stack>
-              <Heading size="md">Kumbh Mela Package 3 Nights 4 Days</Heading>
-              <Text>
-              Come and savor every bit of spirituality at Kumbh Mela with our
+              <Heading fontFamily="Georgia, serif" size="md">Kumbh Mela Package 3 Nights 4 Days</Heading>
+              <Text fontFamily="Georgia, serif" fontSize="md">
+                Come and savor every bit of spirituality at Kumbh Mela with our
                 2 nights 3 days Kumbh Mela Package. Plan your Kumbh Mela
               </Text>
             </Stack>
@@ -116,16 +144,25 @@ export default function KumbhMelaPackages() {
           </CardFooter>
         </Card>
 
-        <Card maxW={["90%","60%","50%","20%"]} maxH={["40%","40%","40%","40%"]} p={0} backgroundColor={"white"} shadow={'dark-lg'}>
+        <Card
+          maxW={["90%", "60%", "50%", "20%"]}
+          maxH={["40%", "40%", "40%", "40%"]}
+          p={0}
+          backgroundColor={"white"}
+          shadow={"dark-lg"}
+          cursor={'pointer'}
+          _hover={{ transform: 'scale(1.02)' }}
+        transition="transform 0.3s ease-in-out"
+        >
           <LazyLoadImage
             src="./assets/Package4.jpg"
             alt="packages"
-            style={{height:'200px', borderRadius:'2%'}}
+            style={{ height: "200px", borderRadius: "2%" }}
           ></LazyLoadImage>
           <CardBody>
             <Stack>
-              <Heading size="md"> Kumbh Mela Shahi Snan Package</Heading>
-              <Text>
+              <Heading size="md" fontFamily="Georgia, serif" > Kumbh Mela Shahi Snan Package</Heading>
+              <Text fontFamily="Georgia, serif" fontSize="md">
                 Immerse yourself in our sacred Shahi Snan Package or Kumbh Mela
                 package for 4 nights and 5 days, where youll come and s
               </Text>

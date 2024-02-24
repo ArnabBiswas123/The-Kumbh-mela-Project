@@ -14,7 +14,7 @@ export default function KumbhMelaAccommodation() {
       <Text
         fontWeight={"bold"}
         textAlign={"center"}
-        fontFamily="'Noto Sans', sans-serif"
+        fontFamily="Georgia, serif"
         fontSize={25}
         m={"2%"}
       >
@@ -29,16 +29,27 @@ export default function KumbhMelaAccommodation() {
         gap={3}
         mb={"5%"}
       >
-        <Card maxW={["90%","60%","50%","20%"]} maxH={["40%","40%","40%","40%"]} p={0} backgroundColor={"white"} shadow={'dark-lg'}>
+        <Card
+          maxW={["90%", "60%", "50%", "20%"]}
+          maxH={["40%", "40%", "40%", "40%"]}
+          p={0}
+          backgroundColor={"white"}
+          shadow={"dark-lg"}
+          cursor={'pointer'}
+          _hover={{ transform: 'scale(1.02)' }}
+        transition="transform 0.3s ease-in-out"
+        >
           <LazyLoadImage
             src="./assets/Accommodation1.jpeg"
             alt="packages"
-            style={{height:'200px', borderRadius:'2%'}}
+            style={{ height: "200px", borderRadius: "2%" }}
           ></LazyLoadImage>
           <CardBody>
             <Stack>
-              <Heading size="md">Dormitory Tent</Heading>
-              <Text>
+              <Heading fontFamily="Georgia, serif" size="md">
+                Dormitory Tent
+              </Heading>
+              <Text fontFamily="Georgia, serif" size="md">
                 Dormitories Tent Booking are the best option to book Budget
                 Camp/accommodations in Kumbh Mela Prayagraj.
               </Text>
@@ -56,16 +67,28 @@ export default function KumbhMelaAccommodation() {
             </Text>
           </CardFooter>
         </Card>
-        <Card maxW={["90%","60%","50%","20%"]} maxH={["40%","40%","40%","40%"]} p={0} backgroundColor={"white"} shadow={'dark-lg'}>
+        <Card
+          maxW={["90%", "60%", "50%", "20%"]}
+          maxH={["40%", "40%", "40%", "40%"]}
+          p={0}
+          backgroundColor={"white"}
+          shadow={"dark-lg"}
+          cursor={'pointer'}
+          _hover={{ transform: 'scale(1.02)' }}
+        transition="transform 0.3s ease-in-out"
+        >
           <LazyLoadImage
             src="./assets/Accommodation2.jpeg"
             alt="packages"
-            style={{height:'200px', borderRadius:'2%'}}
+            style={{ height: "200px", borderRadius: "2%" }}
           ></LazyLoadImage>
           <CardBody>
             <Stack>
-              <Heading size="md"> Economy Tent</Heading>
-              <Text>
+              <Heading fontFamily="Georgia, serif" size="md">
+                {" "}
+                Economy Tent
+              </Heading>
+              <Text fontFamily="Georgia, serif" size="md">
                 Economy Tents are the best option to stay individually in Kumbh
                 Mela Prayagraj in your budget and visit 2025 Kumbh Mela
               </Text>
@@ -78,22 +101,35 @@ export default function KumbhMelaAccommodation() {
               w={"50%"}
               textAlign={"center"}
               cursor={"pointer"}
+              fontFamily="Georgia, serif"
+              size="md"
             >
               View Details
             </Text>
           </CardFooter>
         </Card>
-        <Card maxW={["90%","60%","50%","20%"]} maxH={["40%","40%","40%","40%"]} p={0} backgroundColor={"white"} shadow={'dark-lg'}>
+        <Card
+          maxW={["90%", "60%", "50%", "20%"]}
+          maxH={["40%", "40%", "40%", "40%"]}
+          p={0}
+          backgroundColor={"white"}
+          shadow={"dark-lg"}
+          cursor={'pointer'}
+          _hover={{ transform: 'scale(1.02)' }}
+        transition="transform 0.3s ease-in-out"
+        >
           <LazyLoadImage
             src="./assets/Accommodation3.jpeg"
             alt="packages"
-            style={{height:'200px', borderRadius:'2%'}}
+            style={{ height: "200px", borderRadius: "2%" }}
             borderTopRadius={"md"}
           ></LazyLoadImage>
           <CardBody>
             <Stack>
-              <Heading size="md">Deluxe Tent</Heading>
-              <Text>
+              <Heading fontFamily="Georgia, serif" size="md">
+                Deluxe Tent
+              </Heading>
+              <Text fontFamily="Georgia, serif" size="md">
                 Deluxe Tents offering more amenities as the guest requirement.
                 This tent includes double bed mattress with attached bath
               </Text>
@@ -111,17 +147,28 @@ export default function KumbhMelaAccommodation() {
             </Text>
           </CardFooter>
         </Card>
-        <Card maxW={["90%","60%","50%","20%"]} maxH={["40%","40%","40%","40%"]} p={0} backgroundColor={"white"} shadow={'dark-lg'}>
+        <Card
+          maxW={["90%", "60%", "50%", "20%"]}
+          maxH={["40%", "40%", "40%", "40%"]}
+          p={0}
+          backgroundColor={"white"}
+          shadow={"dark-lg"}
+          cursor={'pointer'}
+          _hover={{ transform: 'scale(1.02)' }}
+        transition="transform 0.3s ease-in-out"
+        >
           <LazyLoadImage
             src="./assets/Accommodation4.jpeg"
             alt="packages"
-            style={{height:'200px', borderRadius:'2%'}}
+            style={{ height: "200px", borderRadius: "2%" }}
             borderTopRadius={"md"}
           ></LazyLoadImage>
           <CardBody>
             <Stack>
-              <Heading size="md">Luxury Tent</Heading>
-              <Text>
+              <Heading fontFamily="Georgia, serif" size="md">
+                Luxury Tent
+              </Heading>
+              <Text fontFamily="Georgia, serif" size="md">
                 Luxury Cottage are one of the finest Luxurious camping in Kumbh
                 Mela 2025. This Cottage includes compete features as the
               </Text>

@@ -18,6 +18,7 @@ export default function KumbhDates() {
       minW={"100%"}
       flexDirection={"column"}
       mt={'4%'}
+      
     >
       <Box
         shadow={"dark-lg"}
@@ -28,12 +29,15 @@ export default function KumbhDates() {
         borderRadius={"md"}
         p={5}
         bgColor={"#ff7f50"}
+        cursor={'pointer'}
+        _hover={{ transform: 'scale(1.02)' }}
+      transition="transform 0.3s ease-in-out"
       >
         {" "}
         <Text
           fontWeight={"bold"}
           textAlign={"center"}
-          fontFamily="'Noto Sans', sans-serif"
+          fontFamily="Georgia, serif" 
           color={"white"}
           fontSize={25}
         >
@@ -47,14 +51,14 @@ export default function KumbhDates() {
                 <Th
                   color={"white"}
                   fontWeight={"bold"}
-                  fontFamily="'Noto Sans', sans-serif"
+                  fontFamily="Georgia, serif" 
                   fontSize={19}
                 >
                   Event
                 </Th>
                 <Th  color={"white"}
                   fontWeight={"bold"}
-                  fontFamily="'Noto Sans', sans-serif"
+                  fontFamily="Georgia, serif" 
                   fontSize={19}>Bathing Date</Th>
               </Tr>
             </Thead>
@@ -63,7 +67,7 @@ export default function KumbhDates() {
                 <Td
                   color={"white"}
                   fontWeight={"bold"}
-                  fontFamily="'Noto Sans', sans-serif"
+                  fontFamily="Georgia, serif" 
                   fontSize={15}
                 >
                   Paush Poornima (Important Bathing)
@@ -72,7 +76,7 @@ export default function KumbhDates() {
                 <Td
                   color={"white"}
                   fontWeight={"bold"}
-                  fontFamily="'Noto Sans', sans-serif"
+                  fontFamily="Georgia, serif" 
                   fontSize={15}
                 >
                   {" "}
@@ -83,7 +87,7 @@ export default function KumbhDates() {
                 <Td
                   color={"white"}
                   fontWeight={"bold"}
-                  fontFamily="'Noto Sans', sans-serif"
+                  fontFamily="Georgia, serif" 
                   fontSize={15}
                 >
                   Makar Sankranti (Royal Bathing/Shahi Snan)
@@ -92,7 +96,7 @@ export default function KumbhDates() {
                 <Td
                   color={"white"}
                   fontWeight={"bold"}
-                  fontFamily="'Noto Sans', sans-serif"
+                  fontFamily="Georgia, serif" 
                   fontSize={15}
                 >
                   {" "}
@@ -103,7 +107,7 @@ export default function KumbhDates() {
                 <Td
                   color={"white"}
                   fontWeight={"bold"}
-                  fontFamily="'Noto Sans', sans-serif"
+                  fontFamily="Georgia, serif" 
                   fontSize={15}
                 >
                   Mauni Amavasya (Royal Bathing/Shahi Snan)
@@ -112,7 +116,7 @@ export default function KumbhDates() {
                 <Td
                   color={"white"}
                   fontWeight={"bold"}
-                  fontFamily="'Noto Sans', sans-serif"
+                  fontFamily="Georgia, serif" 
                   fontSize={15}
                 >
                   {" "}
@@ -123,7 +127,7 @@ export default function KumbhDates() {
                 <Td
                   color={"white"}
                   fontWeight={"bold"}
-                  fontFamily="'Noto Sans', sans-serif"
+                  fontFamily="Georgia, serif" 
                   fontSize={15}
                 >
                   Basant Panchami (Royal Bathing/Shahi Snan)
@@ -132,7 +136,7 @@ export default function KumbhDates() {
                 <Td
                   color={"white"}
                   fontWeight={"bold"}
-                  fontFamily="'Noto Sans', sans-serif"
+                  fontFamily="Georgia, serif" 
                   fontSize={15}
                 >
                   {" "}
@@ -143,7 +147,7 @@ export default function KumbhDates() {
                 <Td
                   color={"white"}
                   fontWeight={"bold"}
-                  fontFamily="'Noto Sans', sans-serif"
+                  fontFamily="Georgia, serif" 
                   fontSize={15}
                 >
                   Achla Saptami (Important Bathing)
@@ -152,7 +156,7 @@ export default function KumbhDates() {
                 <Td
                   color={"white"}
                   fontWeight={"bold"}
-                  fontFamily="'Noto Sans', sans-serif"
+                  fontFamily="Georgia, serif" 
                   fontSize={15}
                 >
                   {" "}
@@ -163,7 +167,7 @@ export default function KumbhDates() {
                 <Td
                   color={"white"}
                   fontWeight={"bold"}
-                  fontFamily="'Noto Sans', sans-serif"
+                  fontFamily="Georgia, serif" 
                   fontSize={15}
                 >
                   Maghi Poornima (Important Bathing)
@@ -172,7 +176,7 @@ export default function KumbhDates() {
                 <Td
                   color={"white"}
                   fontWeight={"bold"}
-                  fontFamily="'Noto Sans', sans-serif"
+                  fontFamily="Georgia, serif" 
                   fontSize={15}
                 >
                   {" "}
@@ -183,7 +187,7 @@ export default function KumbhDates() {
                 <Td
                   color={"white"}
                   fontWeight={"bold"}
-                  fontFamily="'Noto Sans', sans-serif"
+                  fontFamily="Georgia, serif" 
                   fontSize={15}
                 >
                   Maha Shivratri (Important Bathing)
@@ -192,7 +196,7 @@ export default function KumbhDates() {
                 <Td
                   color={"white"}
                   fontWeight={"bold"}
-                  fontFamily="'Noto Sans', sans-serif"
+                  fontFamily="Georgia, serif" 
                   fontSize={15}
                 >
                   {" "}

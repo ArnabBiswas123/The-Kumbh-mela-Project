@@ -16,7 +16,9 @@ export default function AboutKumbh() {
         shadow={"dark-lg"}
         display={"flex"}
         flexDir={"column"}
-   
+        cursor={'pointer'}
+        _hover={{ transform: 'scale(1.02)' }}
+      transition="transform 0.3s ease-in-out"
         m={"2%"}
         w={["100%","100%","80%","60%"]}
         borderRadius={"md"}
@@ -26,7 +28,7 @@ export default function AboutKumbh() {
         <Text
           fontWeight={"bold"}
           textAlign={"center"}
-          fontFamily="'Noto Sans', sans-serif"
+          fontFamily="Georgia, serif" 
           color={"white"}
           fontSize={25}
         >
