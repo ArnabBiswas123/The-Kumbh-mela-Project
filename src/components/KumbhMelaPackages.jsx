@@ -30,7 +30,7 @@ export default function KumbhMelaPackages() {
         gap={3}
         mb={"5%"}
       >
-        <Card maxW={["60%","60%","50%","20%"]} maxH={["40%","40%","40%","40%"]} p={0} backgroundColor={"white"} shadow={'dark-lg'}>
+        <Card maxW={["90%","60%","50%","20%"]} maxH={["40%","40%","40%","40%"]} p={0} backgroundColor={"white"} shadow={'dark-lg'}>
           <LazyLoadImage
             src="./assets/Packages.jpg"
             alt="packages"
@@ -58,7 +58,7 @@ export default function KumbhMelaPackages() {
           </CardFooter>
         </Card>
 
-        <Card maxW={["60%","60%","50%","20%"]} maxH={["40%","40%","40%","40%"]} p={0} backgroundColor={"white"} shadow={'dark-lg'}>
+        <Card maxW={["90%","60%","50%","20%"]} maxH={["40%","40%","40%","40%"]} p={0} backgroundColor={"white"} shadow={'dark-lg'}>
           <LazyLoadImage
             src="./assets/Package2.jpg"
             alt="packages"
@@ -88,7 +88,7 @@ export default function KumbhMelaPackages() {
           </CardFooter>
         </Card>
 
-        <Card maxW={["60%","60%","50%","20%"]} maxH={["40%","40%","40%","40%"]} p={0} backgroundColor={"white"} shadow={'dark-lg'}>
+        <Card maxW={["90%","60%","50%","20%"]} maxH={["40%","40%","40%","40%"]} p={0} backgroundColor={"white"} shadow={'dark-lg'}>
           <LazyLoadImage
             src="./assets/Package3.jpg"
             alt="packages"
@@ -116,7 +116,7 @@ export default function KumbhMelaPackages() {
           </CardFooter>
         </Card>
 
-        <Card maxW={["60%","60%","50%","20%"]} maxH={["40%","40%","40%","40%"]} p={0} backgroundColor={"white"} shadow={'dark-lg'}>
+        <Card maxW={["90%","60%","50%","20%"]} maxH={["40%","40%","40%","40%"]} p={0} backgroundColor={"white"} shadow={'dark-lg'}>
           <LazyLoadImage
             src="./assets/Package4.jpg"
             alt="packages"

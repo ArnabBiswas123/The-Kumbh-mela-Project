@@ -1,6 +1,10 @@
 import { Box, Center, Text, } from "@chakra-ui/react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useNavigate } from "react-router-dom";
 export default function AboutKumbh() {
+
+  const navigate=useNavigate();
+
   return (
     <Center
       backgroundColor={"white"}
@@ -29,7 +33,7 @@ export default function AboutKumbh() {
           KUMBH MELA PRAYAGRAJ
         </Text>
         <Box display={"flex"} justifyContent={'center'} alignItems={'center'} flexDir={['column-reverse','column-reverse','column-reverse','row']} mt={2} gap={3}>
-          <Text color={"white"}>
+          <Text color={"white"} fontFamily="Georgia, serif" fontSize="md" lineHeight="taller">
             Kumbh Mela, in Hinduism, religious festival that is celebrated four
             times over the course of 12 years, the site of the observance
             rotating between four pilgrimage places on four sacred rivers—at
@@ -43,7 +47,7 @@ export default function AboutKumbh() {
           <LazyLoadImage src="./assets/AboutKumbh.jpg"   style={{height:'300px', width:'300px', borderRadius:'2%'}}></LazyLoadImage>
         </Box>
 
-        <Text color={"white"} h={"10%"} w={"50%"} cursor={"pointer"}>
+        <Text color={"white"} h={"10%"} w={"50%"} cursor={"pointer"} onClick={()=>{navigate('/kumbhinfo')}}>
           View Details
         </Text>
       </Box>

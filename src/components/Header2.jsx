@@ -12,6 +12,7 @@ export default function Header2() {
       justifyContent={"space-between"}
       alignItems={"center"}
     >
+    <NavLink to={'/'}>
       <Image
         src="./assets/gd logo.gif"
         height={"50px"}
@@ -19,6 +20,7 @@ export default function Header2() {
         m={2}
         cursor={"pointer"}
       ></Image>
+      </NavLink>
       {isLargerThan980 ? (
         <UnorderedList display={"flex"} gap={4} color={'white'}>
           <NavLink to="#">Home</NavLink>
@@ -29,7 +31,7 @@ export default function Header2() {
       ) : (
         ""
       )}
-      <Button bgColor={"#EF3131"} color={"white"} m={2}>
+      <Button colorScheme='#EF3131' bgColor={"#EF3131"} color={"white"} m={2}>
         ENQUIRY NOW
       </Button>
       {isLargerThan980 ? (

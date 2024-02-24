@@ -29,7 +29,7 @@ export default function KumbhMelaAccommodation() {
         gap={3}
         mb={"5%"}
       >
-        <Card maxW={["60%","60%","50%","20%"]} maxH={["40%","40%","40%","40%"]} p={0} backgroundColor={"white"} shadow={'dark-lg'}>
+        <Card maxW={["90%","60%","50%","20%"]} maxH={["40%","40%","40%","40%"]} p={0} backgroundColor={"white"} shadow={'dark-lg'}>
           <LazyLoadImage
             src="./assets/Accommodation1.jpeg"
             alt="packages"
@@ -56,7 +56,7 @@ export default function KumbhMelaAccommodation() {
             </Text>
           </CardFooter>
         </Card>
-        <Card maxW={["60%","60%","50%","20%"]} maxH={["40%","40%","40%","40%"]} p={0} backgroundColor={"white"} shadow={'dark-lg'}>
+        <Card maxW={["90%","60%","50%","20%"]} maxH={["40%","40%","40%","40%"]} p={0} backgroundColor={"white"} shadow={'dark-lg'}>
           <LazyLoadImage
             src="./assets/Accommodation2.jpeg"
             alt="packages"
@@ -83,7 +83,7 @@ export default function KumbhMelaAccommodation() {
             </Text>
           </CardFooter>
         </Card>
-        <Card maxW={["60%","60%","50%","20%"]} maxH={["40%","40%","40%","40%"]} p={0} backgroundColor={"white"} shadow={'dark-lg'}>
+        <Card maxW={["90%","60%","50%","20%"]} maxH={["40%","40%","40%","40%"]} p={0} backgroundColor={"white"} shadow={'dark-lg'}>
           <LazyLoadImage
             src="./assets/Accommodation3.jpeg"
             alt="packages"
@@ -111,7 +111,7 @@ export default function KumbhMelaAccommodation() {
             </Text>
           </CardFooter>
         </Card>
-        <Card maxW={["60%","60%","50%","20%"]} maxH={["40%","40%","40%","40%"]} p={0} backgroundColor={"white"} shadow={'dark-lg'}>
+        <Card maxW={["90%","60%","50%","20%"]} maxH={["40%","40%","40%","40%"]} p={0} backgroundColor={"white"} shadow={'dark-lg'}>
           <LazyLoadImage
             src="./assets/Accommodation4.jpeg"
             alt="packages"

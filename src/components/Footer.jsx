@@ -1,10 +1,7 @@
 import {
   Box,
-  VStack,
   ListItem,
-  UnorderedList,
   List,
-  Image,
   Text,
 } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
