@@ -4,6 +4,8 @@ import AboutPage from "./pages/AboutPage";
 import LoginPage from "./pages/LoginPage";
 import Dashboardpage from "./pages/Dashboardpage";
 import KumbhAdmin from "./pages/KumbhAdmin";
+import CreateSection from "./components/KumbhAdmin/CreateSection";
+import EditSection from "./components/KumbhAdmin/EditSection";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route path="/adminlogin" element={<LoginPage></LoginPage>}></Route>
         <Route path="/dashboard" element={<Dashboardpage></Dashboardpage>}></Route>
         <Route path="/kumbhadmin" element={<KumbhAdmin></KumbhAdmin>}></Route>
+        <Route path="/createsection" element={<CreateSection></CreateSection>}></Route>
+        <Route path="/editsection" element={<EditSection></EditSection>}></Route>
       </Routes>
     </>
   );

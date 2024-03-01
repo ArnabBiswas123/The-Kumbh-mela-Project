@@ -2,11 +2,13 @@ import React from 'react'
 import { Center,Card, Image,Text} from "@chakra-ui/react";
 import { useNavigate } from 'react-router-dom';
 
+
 export default function Projects() {
 
   const navigate=useNavigate();
 
   return (
+    <>
     <Center m={4} display={'flex'} flexWrap={'wrap'} gap={4}>
     <Card
     direction={['column','column','column','row']}
@@ -37,5 +39,6 @@ export default function Projects() {
           >The Kumbh Mela Project</Text>
   </Card>
   </Center>
+  </>
   )
 }
