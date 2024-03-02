@@ -9,33 +9,46 @@ import {
   Th,
   Td,
   TableContainer,
-  useToast
+  useToast,
 } from "@chakra-ui/react";
 import { useEffect } from "react";
 import Sections from "./Sections";
 import ViewSection from "./ViewSection";
+import EditSectionModal from "./EditSectionModal";
 export default function EditSection() {
-
-  const [sections,setSections]=useState([]);
-  const toast=useToast();
+  const [sections, setSections] = useState([]);
+  const toast = useToast();
   const [isOpen, setIsOpen] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
   const [modalData, setModalData] = useState("");
+  const [modalEditData, setModalEditData] = useState("");
+  const [fetchAgain, setFetchAgain] = useState(false);
 
   const handleOpenModal = (data) => {
     setModalData(data);
     setIsOpen(true);
   };
+  const handleOpenEditModal = (data) => {
+    setModalEditData(data);
+    setIsEditOpen(true);
+  };
 
   const handleCloseModal = () => {
     setIsOpen(false);
   };
-  const fetchdata=async()=>{
-    const res=await fetch(`${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getabout`);
-    const data=await res.json();
-    if(data.success===false){
+  const handleCloseEditModal = () => {
+    setIsEditOpen(false);
+    setFetchAgain(prev=>!prev);
+  };
+  const fetchdata = async () => {
+    const res = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getabout`
+    );
+    const data = await res.json();
+    if (data.success === false) {
       toast({
         title: data.msg,
-        description: "Some erroe happened",
+        description: "Some error happened",
         position: "top",
         status: "error",
         duration: 2000,
@@ -45,13 +58,41 @@ export default function EditSection() {
     }
     // console.log(data);
     setSections(data.data);
-  }
- 
-  useEffect(()=>{
-      fetchdata();
-  },[])
+  };
 
+  const handleDelete = async (id) => {
+    const res = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/deletesection/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
+    const data = await res.json();
+    if (data.success === true) {
+      toast({
+        title: "Successfully deleted",
+        description: "Section is deleted successfully",
+        position: "top",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+      });
+      setFetchAgain((prev) => !prev);
+      return;
+    }
+    toast({
+      title: data.msg,
+      description: "Some error happened",
+      position: "top",
+      status: "error",
+      duration: 2000,
+      isClosable: true,
+    });
+  };
 
+  useEffect(() => {
+    fetchdata();
+  }, [fetchAgain]);
 
   return (
     <Box w={"100vw"} minH={"100vh"} bgColor={"white"} overflow={"hidden"}>
@@ -71,51 +112,75 @@ export default function EditSection() {
               <Thead bgColor={"white"}>
                 <Tr>
                   <Th fontFamily="Georgia, serif"> Section Title</Th>
-                  <Th fontFamily="Georgia, serif" >View</Th>
+                  <Th fontFamily="Georgia, serif">View</Th>
                   <Th fontFamily="Georgia, serif">Edit</Th>
                   <Th fontFamily="Georgia, serif">Delete</Th>
                 </Tr>
               </Thead>
               <Tbody>
-                {sections.length>0? sections.map((item,index)=>{
-                  return(
-                    <Tr key={index}>
-                    <Td fontFamily="Georgia, serif">{item.title}</Td>
-                    <Td cursor={'pointer'} onClick={() => handleOpenModal(item)}>
-                      <Image
-                        src="./assets/eye.png"
-                        alt="view"
-                        h={"20px"}
-                        w={"20px"}
-                        ml={2}
-                      ></Image>
-                    </Td>
-                    <ViewSection isOpen={isOpen} onClose={handleCloseModal} data={modalData} />
-                    <Td cursor={'pointer'}>
-                      {" "}
-                      <Image
-                        src="./assets/edit.png"
-                        alt="edit"
-                        h={"20px"}
-                        w={"20px"}
-                        ml={2}
-                      ></Image>
-                    </Td>
-                    <Td cursor={'pointer'}>
-                      {" "}
-                      <Image
-                        src="./assets/bin.png"
-                        alt="delete"
-                        h={"20px"}
-                        w={"20px"}
-                        ml={2}
-                      ></Image>
-                    </Td>
-                  </Tr>
-                  )
-                }):''}
+                {sections.length > 0
+                  ? sections.map((item, index) => {
+                      return (
+                        <Tr key={index}>
+                          <Td fontFamily="Georgia, serif">{item.title}</Td>
+                          <Td
+                            cursor={"pointer"}
+                            onClick={() => handleOpenModal(item)}
+                          >
+                            <Image
+                              src="./assets/eye.png"
+                              alt="view"
+                              h={"20px"}
+                              w={"20px"}
+                              ml={2}
+                            ></Image>
+                          </Td>
+                          {isOpen && modalData && (
+                            <ViewSection
+                              isOpen={isOpen}
+                              onClose={handleCloseModal}
+                              data={modalData}
+                            />
+                          )}
 
-              
+                          <Td
+                            cursor={"pointer"}
+                            onClick={() => handleOpenEditModal(item)}
+                          >
+                            {" "}
+                            <Image
+                              src="./assets/edit.png"
+                              alt="edit"
+                              h={"20px"}
+                              w={"20px"}
+                              ml={2}
+                            ></Image>
+                          </Td>
+                          {isEditOpen && modalEditData && (
+                            <EditSectionModal
+                              isOpen={isEditOpen}
+                              onClose={handleCloseEditModal}
+                              data={modalEditData}
+                            ></EditSectionModal>
+                          )}
+
+                          <Td
+                            cursor={"pointer"}
+                            onClick={() => handleDelete(item._id)}
+                          >
+                            {" "}
+                            <Image
+                              src="./assets/bin.png"
+                              alt="delete"
+                              h={"20px"}
+                              w={"20px"}
+                              ml={2}
+                            ></Image>
+                          </Td>
+                        </Tr>
+                      );
+                    })
+                  : ""}
               </Tbody>
             </Table>
           </TableContainer>

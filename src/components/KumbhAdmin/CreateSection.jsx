@@ -53,7 +53,7 @@ export default function CreateSection() {
         isClosable: true,
       });
     }else{
-      console.log(process.env.REACT_APP_BACKEND_URL)
+    
       setLoading(true);
       const response=await fetch(`${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/createabout`,{
         method: "POST",

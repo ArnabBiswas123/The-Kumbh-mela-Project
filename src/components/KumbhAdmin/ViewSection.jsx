@@ -11,11 +11,11 @@ import {
 } from "@chakra-ui/react";
 
 export default function ViewSection({ isOpen, onClose, data }) {
-  console.log(data);
+  // console.log(data);
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay backgroundColor={"rgba(0, 0, 0, 0.2)"}></ModalOverlay>
-      <ModalContent>
+      <ModalContent  >
         <ModalHeader fontFamily={"Georgia, serif"} textAlign={"center"}>
           {data.title}
         </ModalHeader>

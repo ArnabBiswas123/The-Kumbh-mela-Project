@@ -1,8 +1,36 @@
 import React from "react";
-import { Center, Heading, Text } from "@chakra-ui/react";
+import { Center, Heading, Text,useToast } from "@chakra-ui/react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import {useState ,useEffect } from "react";
 
 export default function KumbhInfo() {
+  const [sections, setSections] = useState([]);
+  const toast=useToast();
+  const fetchdata = async () => {
+    const res = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getabout`
+    );
+    const data = await res.json();
+    if (data.success === false) {
+      toast({
+        title: data.msg,
+        description: "Some error happened",
+        position: "top",
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+      });
+      return;
+    }
+    // console.log(data);
+    setSections(data.data);
+  };
+
+  useEffect(()=>{
+      fetchdata();
+  },[])
+
+
   return (
     <Center width={"100%"} my={4} overflow={"hidden"}>
       <Center
@@ -10,41 +38,29 @@ export default function KumbhInfo() {
         display={"flex"}
         flexDir={"column"}
       >
-        <Heading
+  {sections.length > 0?sections.map((item,index)=>{
+    return (
+      <>
+       <Heading
           as="h1"
           fontFamily="Georgia, serif"
           fontSize="4xl"
           fontWeight="bold"
           my={4}
-        >
-          About Kumbh Mela
-        </Heading>
+        >{item.title}</Heading>
         <Text fontFamily="Georgia, serif" fontSize="lg" lineHeight="taller"  m={8}>
-          Kumbh Mela (the festival of the sacred Pitcher) is the largest
-          peaceful congregation of pilgrims on earth, during which participants
-          bathe or take a dip in a sacred river. Devotees believe that by
-          bathing in the Ganges one is freed from sins liberating her/him from
-          the cycle of birth and death. Millions of people reach the place
-          without any invitation. The congregation includes ascetics, saints,
-          sadhus, aspirants-kalpavasis and visitors. The festival is held at
-          Allahabad, Haridwar, Ujjain and Nasik every four years by rotation and
-          is attended by millions of people irrespective of caste, creed or
-          gender. Its primary bearers, however, belong to akhadas and ashrams,
-          religious organizations, or are individuals living on alms. Kumbh Mela
-          plays a central spiritual role in the country, exerting a mesmeric
-          influence on ordinary Indians. The event encapsulates the science of
-          astronomy, astrology, spirituality, ritualistic traditions, and social
-          and cultural customs and practices, making it extremely rich in
-          knowledge. As it is held in four different cities in India, it
-          involves different social and cultural activities, making this a
-          culturally diverse festival. Knowledge and skills related to the
-          tradition are transmitted through ancient religious manuscripts, oral
-          traditions, historical travelogues and texts produced by eminent
-          historians. However, the teacher-student relationship of the sadhus in
-          the ashrams and akhadas remains the most important method of imparting
-          and safeguarding knowledge and skills relating to Kumbh Mela.
+          {item.description}
         </Text>
-        <Heading
+      </>
+    )
+  }):''}
+
+
+
+
+       
+        
+        {/* <Heading
           as="h1"
           fontFamily="Georgia, serif"
           fontSize="4xl"
@@ -52,13 +68,13 @@ export default function KumbhInfo() {
           my={4}
         >
           Mythology
-        </Heading>
-        <LazyLoadImage
+        </Heading> */}
+        {/* <LazyLoadImage
           src="./assets/SamudraManthan.png"
           height={"100%"}
           width={"60%"}
-        ></LazyLoadImage>
-        <Text
+        ></LazyLoadImage> */}
+        {/* <Text
           fontFamily="Georgia, serif"
           fontSize="lg"
           lineHeight="taller"
@@ -87,8 +103,8 @@ export default function KumbhInfo() {
           story is not found in the earliest mentions of the original legend of
           Samudra Manthana such as the Vedic era texts (pre-500 BCE).Nor is this
           story found in the later era Puranas (3rd to 10th-century CE).
-        </Text>
-        <Heading
+        </Text> */}
+        {/* <Heading
           as="h1"
           fontFamily="Georgia, serif"
           fontSize="4xl"
@@ -96,8 +112,8 @@ export default function KumbhInfo() {
           my={4}
         >
           History
-        </Heading>
-        <Text
+        </Heading> */}
+        {/* <Text
           fontFamily="Georgia, serif"
           fontSize="lg"
           lineHeight="taller"
@@ -128,7 +144,7 @@ export default function KumbhInfo() {
           According to some scholars, this is the earliest surviving historical
           account of the Kumbh Mela, which took place in present-day Prayag in
           644 CE.
-        </Text>
+        </Text> */}
       </Center>
     </Center>
   );
