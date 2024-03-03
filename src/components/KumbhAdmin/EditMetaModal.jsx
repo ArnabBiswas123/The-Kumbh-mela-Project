@@ -61,7 +61,7 @@ export default function EditMetaModal({ isOpen, onClose, data }) {
           isClosable: true,
         });
       }else{
-      
+      try {
         setLoading(true);
         const response=await fetch(`${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/editmetatag`,{
           method: "PUT",
@@ -95,6 +95,10 @@ export default function EditMetaModal({ isOpen, onClose, data }) {
             duration: 2000,
             isClosable: true,})
         }
+      } catch (error) {
+        console.log(error)
+      }
+       
   
       }
     };

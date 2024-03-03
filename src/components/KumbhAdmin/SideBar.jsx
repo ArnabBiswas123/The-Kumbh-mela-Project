@@ -12,6 +12,18 @@ export default function SideBar() {
       }}
     >
       <Menu>
+          <SubMenu label="About">
+          <MenuItem component={<Link to="/createsection" />}>
+            {" "}
+            Create Section
+          </MenuItem>
+          <MenuItem component={<Link to="/editsection" />}>
+            {" "}
+            Edit or Delete Section
+          </MenuItem>
+          <MenuItem component={<Link to="/aboutcreatemetatags" />}>Create meta tags</MenuItem>
+          <MenuItem component={<Link to="/abouteditmetatags" />}>Edit or Delete meta tags</MenuItem>
+        </SubMenu>
         <SubMenu label="Packages">
           <MenuItem component={<Link to="/createpackage" />}>
             {" "}
@@ -26,18 +38,7 @@ export default function SideBar() {
           <MenuItem component={<Link to="/abouteditmetatags" />}>Edit or Delete Sections</MenuItem>
           <MenuItem component={<Link to="/abouteditmetatags" />}>Edit or Delete Sections</MenuItem>
         </SubMenu>
-        <SubMenu label="About">
-          <MenuItem component={<Link to="/createsection" />}>
-            {" "}
-            Create Section
-          </MenuItem>
-          <MenuItem component={<Link to="/editsection" />}>
-            {" "}
-            Edit or Delete Section
-          </MenuItem>
-          <MenuItem component={<Link to="/aboutcreatemetatags" />}>Create meta tags</MenuItem>
-          <MenuItem component={<Link to="/abouteditmetatags" />}>Edit or Delete meta tags</MenuItem>
-        </SubMenu>
+      
       </Menu>
     </Sidebar>
   );

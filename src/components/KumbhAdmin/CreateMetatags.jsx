@@ -49,40 +49,45 @@ export default function CreateMetatags() {
           });
         }else{
         
-          setLoading(true);
-          console.log(process.env.REACT_APP_BACKEND_URL)
-          const response=await fetch(`${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/createmeta`,{
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              meta_title:input,
-              meta_description:des
-            }),
-          })
-          setLoading(false);
-          const data=await response.json();
-          if(data.success===true){
-            toast({
-              title: "Successfully created",
-              description: "Section is created successfully",
-              position: "top",
-              status: "success",
-              duration: 2000,
-              isClosable: true,
-            });
+          try {
+            setLoading(true);
+            const response=await fetch(`${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/createmeta`,{
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                meta_title:input,
+                meta_description:des
+              }),
+            })
+            setLoading(false);
+            const data=await response.json();
+            if(data.success===true){
+              toast({
+                title: "Successfully created",
+                description: "Section is created successfully",
+                position: "top",
+                status: "success",
+                duration: 2000,
+                isClosable: true,
+              });
+            }
+            else{
+              toast({
+                title: data.msg,
+                description: "Error occured",
+                position: "top",
+                status: "error",
+                duration: 2000,
+                isClosable: true,})
+            }  
+            
+          } catch (error) {
+            setLoading(false);
+              console.log(error);
           }
-          else{
-            toast({
-              title: data.msg,
-              description: "Error occured",
-              position: "top",
-              status: "error",
-              duration: 2000,
-              isClosable: true,})
-          }
-    
+         
         }
       };
     

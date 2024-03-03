@@ -63,7 +63,7 @@ export default function EditSectionModal({ isOpen, onClose, data }) {
           isClosable: true,
         });
       }else{
-      
+      try {
         setLoading(true);
         const response=await fetch(`${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/editabout`,{
           method: "PUT",
@@ -99,6 +99,10 @@ export default function EditSectionModal({ isOpen, onClose, data }) {
             isClosable: true,})
         }
   
+      } catch (error) {
+        console.log(error);
+      }
+     
       }
     };
 

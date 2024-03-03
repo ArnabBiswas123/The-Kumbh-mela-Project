@@ -17,8 +17,7 @@ export default function CreateSection() {
   const [pic, setPic] = useState("");
   const [des, setDes] = useState("");
   const [error, setError] = useState({ input: "", des: "" });
-  const [loading,setLoading]=useState(false)
-
+  const [loading, setLoading] = useState(false);
 
   const inputChange = (e) => {
     setInput(e.target.value);
@@ -32,7 +31,6 @@ export default function CreateSection() {
     setError({ ...error, des: "" });
   };
   const submitHandler = async () => {
-  
     let errors = {};
 
     if (input === "") {
@@ -52,42 +50,48 @@ export default function CreateSection() {
         duration: 2000,
         isClosable: true,
       });
-    }else{
-    
-      setLoading(true);
-      const response=await fetch(`${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/createabout`,{
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title:input,
-          image:pic?pic:"NA",
-          description:des
-        }),
-      })
-      setLoading(false);
-      const data=await response.json();
-      if(data.success===true){
-        toast({
-          title: "Successfully created",
-          description: "Section is created successfully",
-          position: "top",
-          status: "success",
-          duration: 2000,
-          isClosable: true,
-        });
+    } else {
+      try {
+        setLoading(true);
+        const response = await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/createabout`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              title: input,
+              image: pic ? pic : "NA",
+              description: des,
+            }),
+          }
+        );
+        setLoading(false);
+        const data = await response.json();
+        if (data.success === true) {
+          toast({
+            title: "Successfully created",
+            description: "Section is created successfully",
+            position: "top",
+            status: "success",
+            duration: 2000,
+            isClosable: true,
+          });
+        } else {
+          toast({
+            title: data.msg,
+            description: "Error occured",
+            position: "top",
+            status: "error",
+            duration: 2000,
+            isClosable: true,
+          });
+        }
+      } catch (error) {
+        setLoading(false);
+        console.log(error);
       }
-      else{
-        toast({
-          title: data.msg,
-          description: "Error occured",
-          position: "top",
-          status: "error",
-          duration: 2000,
-          isClosable: true,})
-      }
-
     }
   };
 
@@ -136,11 +140,10 @@ export default function CreateSection() {
               fontFamily={"Georgia, serif"}
               onChange={desChange}
               value={des}
-              // resize={resize}
             />
             <Button
               isLoading={loading}
-              loadingText='Submitting'
+              loadingText="Submitting"
               colorScheme={"#EF3131"}
               bgColor={"#EF3131"}
               color={"white"}

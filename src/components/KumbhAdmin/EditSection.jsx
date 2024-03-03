@@ -18,34 +18,71 @@ import EditSectionModal from "./EditSectionModal";
 export default function EditSection() {
   const [sections, setSections] = useState([]);
   const toast = useToast();
-  const [isOpen, setIsOpen] = useState(false);
+
   const [isEditOpen, setIsEditOpen] = useState(false);
-  const [modalData, setModalData] = useState("");
+
   const [modalEditData, setModalEditData] = useState("");
   const [fetchAgain, setFetchAgain] = useState(false);
 
-  const handleOpenModal = (data) => {
-    setModalData(data);
-    setIsOpen(true);
-  };
+
   const handleOpenEditModal = (data) => {
     setModalEditData(data);
     setIsEditOpen(true);
   };
 
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  };
+
   const handleCloseEditModal = () => {
     setIsEditOpen(false);
     setFetchAgain(prev=>!prev);
   };
   const fetchdata = async () => {
-    const res = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getabout`
-    );
-    const data = await res.json();
-    if (data.success === false) {
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getabout`
+      );
+      const data = await res.json();
+      if (data.success === false) {
+        toast({
+          title: data.msg,
+          description: "Some error happened",
+          position: "top",
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+        });
+        return;
+      }
+      // console.log(data);
+      setSections(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+
+
+   
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/deletesection/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      const data = await res.json();
+      if (data.success === true) {
+        toast({
+          title: "Successfully deleted",
+          description: "Section is deleted successfully",
+          position: "top",
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+        });
+        setFetchAgain((prev) => !prev);
+        return;
+      }
       toast({
         title: data.msg,
         description: "Some error happened",
@@ -54,40 +91,12 @@ export default function EditSection() {
         duration: 2000,
         isClosable: true,
       });
-      return;
+    } catch (error) {
+      console.log(error);
     }
-    // console.log(data);
-    setSections(data.data);
-  };
 
-  const handleDelete = async (id) => {
-    const res = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/deletesection/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
-    const data = await res.json();
-    if (data.success === true) {
-      toast({
-        title: "Successfully deleted",
-        description: "Section is deleted successfully",
-        position: "top",
-        status: "success",
-        duration: 2000,
-        isClosable: true,
-      });
-      setFetchAgain((prev) => !prev);
-      return;
-    }
-    toast({
-      title: data.msg,
-      description: "Some error happened",
-      position: "top",
-      status: "error",
-      duration: 2000,
-      isClosable: true,
-    });
+
+   
   };
 
   useEffect(() => {
