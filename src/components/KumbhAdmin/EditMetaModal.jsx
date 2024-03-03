@@ -19,13 +19,13 @@ import {
     useToast,
   } from "@chakra-ui/react";
   import { useState } from 'react';
-export default function EditSectionModal({ isOpen, onClose, data }) {
+
+export default function EditMetaModal({ isOpen, onClose, data }) {
   
     const toast = useToast();
     const id=data._id;
-    const [input, setInput] = useState(data.title);
-    const [pic, setPic] = useState(data.pic);
-    const [des, setDes] = useState(data.description);
+    const [input, setInput] = useState(data.meta_title);
+    const [des, setDes] = useState(data.meta_description);
     const [error, setError] = useState({ input: "", des: "" });
     const [loading,setLoading]=useState(false)
     
@@ -34,9 +34,7 @@ export default function EditSectionModal({ isOpen, onClose, data }) {
       setInput(e.target.value);
       setError({ ...error, input: "" });
     };
-    const picChange = async (e) => {
-      setPic(e.target.value);
-    };
+
     const desChange = async (e) => {
       setDes(e.target.value);
       setError({ ...error, des: "" });
@@ -65,16 +63,15 @@ export default function EditSectionModal({ isOpen, onClose, data }) {
       }else{
       
         setLoading(true);
-        const response=await fetch(`${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/editabout`,{
+        const response=await fetch(`${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/editmetatag`,{
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
             id:id,
-            title:input,
-            image:pic?pic:"NA",
-            description:des
+            meta_title:input,
+            meta_description:des
           }),
         })
         setLoading(false);
@@ -115,7 +112,7 @@ export default function EditSectionModal({ isOpen, onClose, data }) {
           <Center>
           <Box width={"80%"} ml={4} my={4} textAlign={"center"}>
           <FormControl>
-            <FormLabel fontFamily={"Georgia, serif"}>Section Header</FormLabel>
+            <FormLabel fontFamily={"Georgia, serif"}>Meta Title</FormLabel>
             <Input
               type="text"
               bgColor={"white"}
@@ -125,16 +122,8 @@ export default function EditSectionModal({ isOpen, onClose, data }) {
               value={input}
               onChange={inputChange}
             />
-            <FormLabel fontFamily={"Georgia, serif"}>Section Image</FormLabel>
-            <Input
-              type="file"
-              bgColor={"white"}
-              mb={4}
-              value={pic}
-              onChange={picChange}
-            />
             <Text mb="8px" fontFamily={"Georgia, serif"} textAlign={"left"}>
-              Section Description
+              Meta Description
             </Text>
             <Textarea
               borderColor={error.des ? "red" : "gray"}

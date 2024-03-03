@@ -14,8 +14,9 @@ import {
 import { useEffect } from "react";
 import Sections from "./Sections";
 
-import EditSectionModal from "./EditSectionModal";
-export default function EditSection() {
+import EditMetaModal from "./EditMetaModal";
+
+export default function EditMetaTags() {
   const [sections, setSections] = useState([]);
   const toast = useToast();
   const [isOpen, setIsOpen] = useState(false);
@@ -41,8 +42,9 @@ export default function EditSection() {
     setFetchAgain(prev=>!prev);
   };
   const fetchdata = async () => {
+
     const res = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getabout`
+      `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getmetatags`
     );
     const data = await res.json();
     if (data.success === false) {
@@ -62,7 +64,7 @@ export default function EditSection() {
 
   const handleDelete = async (id) => {
     const res = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/deletesection/${id}`,
+      `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/deletemetatag/${id}`,
       {
         method: "DELETE",
       }
@@ -111,8 +113,8 @@ export default function EditSection() {
             <Table variant="simple">
               <Thead bgColor={"white"}>
                 <Tr>
-                  <Th fontFamily="Georgia, serif"> Section Title</Th>
-                
+                  <Th fontFamily="Georgia, serif">Meta Title</Th>
+             
                   <Th fontFamily="Georgia, serif">Edit</Th>
                   <Th fontFamily="Georgia, serif">Delete</Th>
                 </Tr>
@@ -122,8 +124,9 @@ export default function EditSection() {
                   ? sections.map((item, index) => {
                       return (
                         <Tr key={index}>
-                          <Td fontFamily="Georgia, serif">{item.title}</Td>
-
+                          <Td fontFamily="Georgia, serif">{item.meta_title}</Td>
+                         
+        
                           <Td
                             cursor={"pointer"}
                             onClick={() => handleOpenEditModal(item)}
@@ -138,11 +141,11 @@ export default function EditSection() {
                             ></Image>
                           </Td>
                           {isEditOpen && modalEditData && (
-                            <EditSectionModal
+                            <EditMetaModal
                               isOpen={isEditOpen}
                               onClose={handleCloseEditModal}
                               data={modalEditData}
-                            ></EditSectionModal>
+                            ></EditMetaModal>
                           )}
 
                           <Td
@@ -167,6 +170,5 @@ export default function EditSection() {
           </TableContainer>
         </Box>
       </Box>
-    </Box>
-  );
+    </Box>)
 }

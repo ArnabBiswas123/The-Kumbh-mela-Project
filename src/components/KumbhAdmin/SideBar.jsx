@@ -12,6 +12,20 @@ export default function SideBar() {
       }}
     >
       <Menu>
+        <SubMenu label="Packages">
+          <MenuItem component={<Link to="/createpackage" />}>
+            {" "}
+            Create Packages
+          </MenuItem>
+          <MenuItem component={<Link to="/editpackage" />}>
+            {" "}
+            Edit package
+          </MenuItem>
+          <MenuItem component={<Link to="/createpackagesections" />}>Create Section</MenuItem>
+          <MenuItem component={<Link to="/abouteditmetatags" />}>Edit or Delete Sections</MenuItem>
+          <MenuItem component={<Link to="/abouteditmetatags" />}>Edit or Delete Sections</MenuItem>
+          <MenuItem component={<Link to="/abouteditmetatags" />}>Edit or Delete Sections</MenuItem>
+        </SubMenu>
         <SubMenu label="About">
           <MenuItem component={<Link to="/createsection" />}>
             {" "}
@@ -24,8 +38,6 @@ export default function SideBar() {
           <MenuItem component={<Link to="/aboutcreatemetatags" />}>Create meta tags</MenuItem>
           <MenuItem component={<Link to="/abouteditmetatags" />}>Edit or Delete meta tags</MenuItem>
         </SubMenu>
-        <MenuItem> Documentation </MenuItem>
-        <MenuItem> Calendar </MenuItem>
       </Menu>
     </Sidebar>
   );

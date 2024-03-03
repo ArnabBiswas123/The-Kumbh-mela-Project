@@ -6,7 +6,8 @@ import Dashboardpage from "./pages/Dashboardpage";
 import KumbhAdmin from "./pages/KumbhAdmin";
 import CreateSection from "./components/KumbhAdmin/CreateSection";
 import EditSection from "./components/KumbhAdmin/EditSection";
-
+import CreateMetatags from "./components/KumbhAdmin/CreateMetatags";
+import EditMetaTags from "./components/KumbhAdmin/EditMetaTags";
 function App() {
   return (
     <>
@@ -18,6 +19,8 @@ function App() {
         <Route path="/kumbhadmin" element={<KumbhAdmin></KumbhAdmin>}></Route>
         <Route path="/createsection" element={<CreateSection></CreateSection>}></Route>
         <Route path="/editsection" element={<EditSection></EditSection>}></Route>
+        <Route path="/aboutcreatemetatags" element={<CreateMetatags></CreateMetatags>}></Route>
+        <Route path="/abouteditmetatags" element={<EditMetaTags></EditMetaTags>}></Route>
       </Routes>
     </>
   );
