@@ -87,7 +87,7 @@ export default function ImageSlider(){
                 src={slide.img}
                 alt="carousel image"
                 boxSize="full"
-                backgroundSize="cover"
+                objectFit="cover"
               />
             </Box>
           ))}
