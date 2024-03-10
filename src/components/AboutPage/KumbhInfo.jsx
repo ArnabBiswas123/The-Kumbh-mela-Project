@@ -1,6 +1,6 @@
 import React from "react";
-import { Center, Heading, Text,useToast } from "@chakra-ui/react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Box, Center, Heading,useToast } from "@chakra-ui/react";
+// import { LazyLoadImage } from "react-lazy-load-image-component";
 import {useState ,useEffect } from "react";
 import {Helmet} from "react-helmet";
 
@@ -47,7 +47,7 @@ export default function KumbhInfo() {
       >
   {sections.length > 0?sections.map((item,index)=>{
     return (
-      <>
+      <Center key={index} display={'flex'} flexDirection={'column'}>
        <Heading
           as="h1"
           fontFamily="Georgia, serif"
@@ -55,10 +55,9 @@ export default function KumbhInfo() {
           fontWeight="bold"
           my={4}
         >{item.title}</Heading>
-        <Text fontFamily="Georgia, serif" fontSize="lg" lineHeight="taller"  m={8}>
-          {item.description}
-        </Text>
-      </>
+        <div dangerouslySetInnerHTML={{__html:item.description}}>
+        </div>
+      </Center>
     )
   }):''}
       </Center>

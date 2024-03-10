@@ -7,7 +7,8 @@ export default function SideBar() {
     <Sidebar
       rootStyles={{
         backgroundColor: "#754C00",
-        height: "91vh",
+        minHeight:"100vh",
+        // height: "100vh",
         fontFamily: "Georgia, serif",
       }}
     >
@@ -31,12 +32,8 @@ export default function SideBar() {
           </MenuItem>
           <MenuItem component={<Link to="/editpackage" />}>
             {" "}
-            Edit package
+            Edit or Delete package
           </MenuItem>
-          <MenuItem component={<Link to="/createpackagesections" />}>Create Section</MenuItem>
-          <MenuItem component={<Link to="/abouteditmetatags" />}>Edit or Delete Sections</MenuItem>
-          <MenuItem component={<Link to="/abouteditmetatags" />}>Edit or Delete Sections</MenuItem>
-          <MenuItem component={<Link to="/abouteditmetatags" />}>Edit or Delete Sections</MenuItem>
         </SubMenu>
       
       </Menu>

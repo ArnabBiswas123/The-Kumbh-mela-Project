@@ -4,15 +4,16 @@ import AdminHeader from "../DashboardPage/AdminHeader";
 import {
   FormControl,
   FormLabel,
-  Textarea,
   Input,
   Button,
   useToast,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useRef, useMemo } from "react";
+import JoditEditor from "jodit-react";
 import Sections from "./Sections";
 export default function CreateSection() {
   const toast = useToast();
+  const editor = useRef(null);
   const [input, setInput] = useState("");
   const [pic, setPic] = useState("");
   const [des, setDes] = useState("");
@@ -23,13 +24,15 @@ export default function CreateSection() {
     setInput(e.target.value);
     setError({ ...error, input: "" });
   };
-  const picChange = async (e) => {
-    setPic(e.target.value);
-  };
-  const desChange = async (e) => {
-    setDes(e.target.value);
+
+
+  
+
+  const handleEditorChange = (value) => {
+    setDes(value);
     setError({ ...error, des: "" });
   };
+
   const submitHandler = async () => {
     let errors = {};
 
@@ -95,6 +98,38 @@ export default function CreateSection() {
     }
   };
 
+  const config = useMemo(() => ({
+    zIndex: 0,
+    readonly: false,
+    activeButtonsInReadOnly: ["source", "fullsize", "print", "about"],
+    toolbarButtonSize: "middle",
+    theme: "default",
+
+    allowResizeY: false,
+    enableDragAndDropFileToEditor: true,
+    saveModeInCookie: false,
+    spellcheck: true,
+    editorCssClass: false,
+    triggerChangeEvent: false,
+    height: 380,
+    direction: "ltr",
+    language: "pt_BR",
+    debugLanguage: false,
+    i18n: "en",
+    tabIndex: 1,
+    toolbar: true,
+    enter: "P",
+    useSplitMode: false,
+    colorPickerDefaultTab: "background",
+    imageDefaultWidth: 100,
+    removeButtons: ["about", "print", "file"],
+    disablePlugins: ["paste", "stat", "speech-recognize", "video"],
+    // events: {},
+    textIcons: false,
+    placeholder: "Enter text here",
+    showXPathInStatusbar: false,
+  }),[]);
+
   return (
     <Box w={"100vw"} minH={"100vh"} bgColor={"white"} overflow={"hidden"}>
       <AdminHeader></AdminHeader>
@@ -119,28 +154,18 @@ export default function CreateSection() {
               value={input}
               onChange={inputChange}
             />
-            <FormLabel fontFamily={"Georgia, serif"}>Section Image</FormLabel>
-            <Input
-              type="file"
-              bgColor={"white"}
-              mb={4}
-              value={pic}
-              onChange={picChange}
-            />
             <Text mb="8px" fontFamily={"Georgia, serif"} textAlign={"left"}>
               Section Description
             </Text>
-            <Textarea
-              borderColor={error.des ? "red" : "white"}
-              borderWidth={2}
-              placeholder="Enter Section Description"
-              size="lg"
-              bgColor={"white"}
-              style={{ height: "200px" }}
-              fontFamily={"Georgia, serif"}
-              onChange={desChange}
+
+            <JoditEditor
+              placeholder="Your placeholder text"
+              ref={editor}
               value={des}
+              config={config}
+              onChange={handleEditorChange}
             />
+
             <Button
               isLoading={loading}
               loadingText="Submitting"

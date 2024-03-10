@@ -18,10 +18,12 @@ import {
     Button,
     useToast,
   } from "@chakra-ui/react";
-  import { useState } from 'react';
+  import { useState,useMemo,useRef } from 'react';
+  import JoditEditor from "jodit-react";
 export default function EditSectionModal({ isOpen, onClose, data }) {
   
     const toast = useToast();
+    const editor = useRef(null);
     const id=data._id;
     const [input, setInput] = useState(data.title);
     const [pic, setPic] = useState(data.pic);
@@ -29,7 +31,10 @@ export default function EditSectionModal({ isOpen, onClose, data }) {
     const [error, setError] = useState({ input: "", des: "" });
     const [loading,setLoading]=useState(false)
     
-
+    const handleEditorChange = (value) => {
+      setDes(value);
+      setError({ ...error, des: "" });
+    };
     const inputChange = (e) => {
       setInput(e.target.value);
       setError({ ...error, input: "" });
@@ -106,6 +111,38 @@ export default function EditSectionModal({ isOpen, onClose, data }) {
       }
     };
 
+    const config = useMemo(() => ({
+      zIndex: 0,
+      readonly: false,
+      activeButtonsInReadOnly: ["source", "fullsize", "print", "about"],
+      toolbarButtonSize: "middle",
+      theme: "default",
+  
+      allowResizeY: false,
+      enableDragAndDropFileToEditor: true,
+      saveModeInCookie: false,
+      spellcheck: true,
+      editorCssClass: false,
+      triggerChangeEvent: false,
+      height: 380,
+      direction: "ltr",
+      language: "pt_BR",
+      debugLanguage: false,
+      i18n: "en",
+      tabIndex: 1,
+      toolbar: true,
+      enter: "P",
+      useSplitMode: false,
+      colorPickerDefaultTab: "background",
+      imageDefaultWidth: 100,
+      removeButtons: ["about", "print", "file"],
+      disablePlugins: ["paste", "stat", "speech-recognize", "video"],
+      // events: {},
+      textIcons: false,
+      placeholder: "Enter text here",
+      showXPathInStatusbar: false,
+    }),[]);
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay backgroundColor={"rgba(0, 0, 0, 0.2)"}></ModalOverlay>
@@ -140,17 +177,12 @@ export default function EditSectionModal({ isOpen, onClose, data }) {
             <Text mb="8px" fontFamily={"Georgia, serif"} textAlign={"left"}>
               Section Description
             </Text>
-            <Textarea
-              borderColor={error.des ? "red" : "gray"}
-              borderWidth={2}
-              placeholder="Enter Section Description"
-              size="lg"
-              bgColor={"white"}
-              style={{ height: "200px" }}
-              fontFamily={"Georgia, serif"}
-              onChange={desChange}
+            <JoditEditor
+              placeholder="Your placeholder text"
+              ref={editor}
               value={des}
-         
+              config={config}
+              onChange={handleEditorChange}
             />
             <Button
               isLoading={loading}

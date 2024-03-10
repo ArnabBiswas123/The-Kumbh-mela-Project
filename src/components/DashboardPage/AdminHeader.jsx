@@ -14,7 +14,7 @@ export default function AdminHeader() {
     >
       <NavLink to={"/"}>
         <Image
-          src="./assets/gd logo.gif"
+          src="/assets/gd logo.gif"
           height={"50px"}
           width={"100px"}
           m={2}

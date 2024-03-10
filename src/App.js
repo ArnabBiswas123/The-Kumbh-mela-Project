@@ -8,6 +8,9 @@ import CreateSection from "./components/KumbhAdmin/CreateSection";
 import EditSection from "./components/KumbhAdmin/EditSection";
 import CreateMetatags from "./components/KumbhAdmin/CreateMetatags";
 import EditMetaTags from "./components/KumbhAdmin/EditMetaTags";
+import CreatePackage from "./components/KumbhAdmin/CreatePackage";
+import EditPackage from "./components/KumbhAdmin/EditPackage";
+import EditPackageById from "./components/KumbhAdmin/EditPackageById";
 function App() {
   return (
     <>
@@ -21,6 +24,9 @@ function App() {
         <Route path="/editsection" element={<EditSection></EditSection>}></Route>
         <Route path="/aboutcreatemetatags" element={<CreateMetatags></CreateMetatags>}></Route>
         <Route path="/abouteditmetatags" element={<EditMetaTags></EditMetaTags>}></Route>
+        <Route path="/createpackage" element={<CreatePackage></CreatePackage>}></Route>
+        <Route path="/editpackage" element={<EditPackage></EditPackage>}></Route>
+        <Route path="/editpackage/:title" element={<EditPackageById></EditPackageById>}></Route>
       </Routes>
     </>
   );

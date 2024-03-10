@@ -12,33 +12,19 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Sections from "./Sections";
 
-import EditSectionModal from "./EditSectionModal";
-export default function EditSection() {
-  const [sections, setSections] = useState([]);
+export default function EditPackage() {
+  const navigate=useNavigate();
+  const [packages, setpackages] = useState([]);
+  const [fetchAgain, setFetchAgain] = useState(false);
   const toast = useToast();
 
-  const [isEditOpen, setIsEditOpen] = useState(false);
-
-  const [modalEditData, setModalEditData] = useState("");
-  const [fetchAgain, setFetchAgain] = useState(false);
-
-
-  const handleOpenEditModal = (data) => {
-    setModalEditData(data);
-    setIsEditOpen(true);
-  };
-
-
-  const handleCloseEditModal = () => {
-    setIsEditOpen(false);
-    setFetchAgain(prev=>!prev);
-  };
   const fetchdata = async () => {
     try {
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getabout`
+        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getallpackage`
       );
       const data = await res.json();
       if (data.success === false) {
@@ -52,20 +38,17 @@ export default function EditSection() {
         });
         return;
       }
-      // console.log(data);
-      setSections(data.data);
+      console.log(data);
+      setpackages(data.data);
     } catch (error) {
       console.log(error);
     }
-
-
-   
   };
 
   const handleDelete = async (id) => {
     try {
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/deletesection/${id}`,
+        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/deletepackage/${id}`,
         {
           method: "DELETE",
         }
@@ -94,9 +77,6 @@ export default function EditSection() {
     } catch (error) {
       console.log(error);
     }
-
-
-   
   };
 
   useEffect(() => {
@@ -121,21 +101,20 @@ export default function EditSection() {
               <Thead bgColor={"white"}>
                 <Tr>
                   <Th fontFamily="Georgia, serif"> Section Title</Th>
-                
                   <Th fontFamily="Georgia, serif">Edit</Th>
                   <Th fontFamily="Georgia, serif">Delete</Th>
                 </Tr>
               </Thead>
               <Tbody>
-                {sections.length > 0
-                  ? sections.map((item, index) => {
+                {packages.length > 0
+                  ? packages.map((item, index) => {
                       return (
                         <Tr key={index}>
                           <Td fontFamily="Georgia, serif">{item.title}</Td>
 
                           <Td
                             cursor={"pointer"}
-                            onClick={() => handleOpenEditModal(item)}
+                            onClick={() => {navigate(`/editpackage/${item.title}`)}}
                           >
                             {" "}
                             <Image
@@ -146,14 +125,6 @@ export default function EditSection() {
                               ml={2}
                             ></Image>
                           </Td>
-                          {isEditOpen && modalEditData && (
-                            <EditSectionModal
-                              isOpen={isEditOpen}
-                              onClose={handleCloseEditModal}
-                              data={modalEditData}
-                            ></EditSectionModal>
-                          )}
-
                           <Td
                             cursor={"pointer"}
                             onClick={() => handleDelete(item._id)}
