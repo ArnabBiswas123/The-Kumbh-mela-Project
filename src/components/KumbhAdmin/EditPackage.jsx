@@ -47,6 +47,7 @@ export default function EditPackage() {
 
   const handleDelete = async (id) => {
     try {
+      console.log(id)
       const res = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/deletepackage/${id}`,
         {
@@ -114,11 +115,11 @@ export default function EditPackage() {
 
                           <Td
                             cursor={"pointer"}
-                            onClick={() => {navigate(`/editpackage/${item.title}`)}}
+                            onClick={() => {navigate(`/kumbhadmin/editpackage/${item.title}`)}}
                           >
                             {" "}
                             <Image
-                              src="./assets/edit.png"
+                              src="/assets/edit.png"
                               alt="edit"
                               h={"20px"}
                               w={"20px"}
@@ -131,7 +132,7 @@ export default function EditPackage() {
                           >
                             {" "}
                             <Image
-                              src="./assets/bin.png"
+                              src="/assets/bin.png"
                               alt="delete"
                               h={"20px"}
                               w={"20px"}

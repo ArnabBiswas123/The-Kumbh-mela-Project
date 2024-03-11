@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Text, Image, Center } from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
 import AdminHeader from "../DashboardPage/AdminHeader";
 import {
   Table,
@@ -12,33 +12,19 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Sections from "./Sections";
 
-import EditMetaModal from "./EditMetaModal";
-
-export default function EditMetaTags() {
-  const [sections, setSections] = useState([]);
-  const toast = useToast();
- 
-  const [isEditOpen, setIsEditOpen] = useState(false);
-
-  const [modalEditData, setModalEditData] = useState("");
+export default function EditAccomodation() {
+  const navigate=useNavigate();
+  const [Accomodations, setAccomodations] = useState([]);
   const [fetchAgain, setFetchAgain] = useState(false);
+  const toast = useToast();
 
- 
-  const handleOpenEditModal = (data) => {
-    setModalEditData(data);
-    setIsEditOpen(true);
-  };
-
-  const handleCloseEditModal = () => {
-    setIsEditOpen(false);
-    setFetchAgain(prev=>!prev);
-  };
   const fetchdata = async () => {
     try {
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getmetatags`
+        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getallaccomodation`
       );
       const data = await res.json();
       if (data.success === false) {
@@ -52,19 +38,17 @@ export default function EditMetaTags() {
         });
         return;
       }
-      // console.log(data);
-      setSections(data.data);
+      console.log(data);
+      setAccomodations(data.data);
     } catch (error) {
       console.log(error);
     }
-
-  
   };
 
   const handleDelete = async (id) => {
     try {
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/deletemetatag/${id}`,
+        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/deleteaccomodation/${id}`,
         {
           method: "DELETE",
         }
@@ -93,7 +77,6 @@ export default function EditMetaTags() {
     } catch (error) {
       console.log(error);
     }
-  
   };
 
   useEffect(() => {
@@ -117,48 +100,38 @@ export default function EditMetaTags() {
             <Table variant="simple">
               <Thead bgColor={"white"}>
                 <Tr>
-                  <Th fontFamily="Georgia, serif">Meta Title</Th>
-             
+                  <Th fontFamily="Georgia, serif"> Section Title</Th>
                   <Th fontFamily="Georgia, serif">Edit</Th>
                   <Th fontFamily="Georgia, serif">Delete</Th>
                 </Tr>
               </Thead>
               <Tbody>
-                {sections.length > 0
-                  ? sections.map((item, index) => {
+                {Accomodations.length > 0
+                  ? Accomodations.map((item, index) => {
                       return (
                         <Tr key={index}>
-                          <Td fontFamily="Georgia, serif">{item.meta_title}</Td>
-                         
-        
+                          <Td fontFamily="Georgia, serif">{item.title}</Td>
+
                           <Td
                             cursor={"pointer"}
-                            onClick={() => handleOpenEditModal(item)}
+                            onClick={() => {navigate(`/kumbhadmin/editaccomodation/${item.title}`)}}
                           >
                             {" "}
                             <Image
-                              src="./assets/edit.png"
+                              src="/assets/edit.png"
                               alt="edit"
                               h={"20px"}
                               w={"20px"}
                               ml={2}
                             ></Image>
                           </Td>
-                          {isEditOpen && modalEditData && (
-                            <EditMetaModal
-                              isOpen={isEditOpen}
-                              onClose={handleCloseEditModal}
-                              data={modalEditData}
-                            ></EditMetaModal>
-                          )}
-
                           <Td
                             cursor={"pointer"}
                             onClick={() => handleDelete(item._id)}
                           >
                             {" "}
                             <Image
-                              src="./assets/bin.png"
+                              src="/assets/bin.png"
                               alt="delete"
                               h={"20px"}
                               w={"20px"}
@@ -174,5 +147,6 @@ export default function EditMetaTags() {
           </TableContainer>
         </Box>
       </Box>
-    </Box>)
+    </Box>
+  );
 }

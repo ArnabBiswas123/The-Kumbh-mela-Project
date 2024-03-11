@@ -18,6 +18,7 @@ export default function KumbhDates() {
       minW={"100%"}
       flexDirection={"column"}
       mt={'4%'}
+      id="dates"
       
     >
       <Box

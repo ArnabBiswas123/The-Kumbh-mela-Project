@@ -21,7 +21,7 @@ export default function Header() {
         <NavLink to="mailto:info@globalduniya.ca">
           <Box display={"flex"} color={"white"} gap={1} cursor={"pointer"}>
             <Image
-              src="./assets/Mail.svg"
+              src="/assets/Mail.svg"
               alt="Mail svg"
               h={"20px"}
               w={"20px"}
@@ -32,7 +32,7 @@ export default function Header() {
         <NavLink>
           <Box display={"flex"} color={"white"} gap={1} cursor={"pointer"}>
             <Image
-              src="./assets/Location.svg"
+              src="/assets/Location.svg"
               alt="Location svg"
               h={"20px"}
               w={"20px"}
@@ -45,7 +45,7 @@ export default function Header() {
         <NavLink to="tel:+91 8989920981">
           <Box display={"flex"} color={"white"} gap={1} cursor={"pointer"}>
             <Image
-              src="./assets/Phone.svg"
+              src="/assets/Phone.svg"
               alt="Mail svg"
               h={"20px"}
               w={"20px"}
@@ -57,7 +57,7 @@ export default function Header() {
       <Box display={"flex"} gap={3} ml={"10%"}>
         <NavLink to={"#"} target="_blank">
           <Image
-            src="./assets/Twitter.svg"
+            src="/assets/Twitter.svg"
             alt="Twitter svg"
             h={"20px"}
             w={"20px"}
@@ -66,7 +66,7 @@ export default function Header() {
         </NavLink>
         <NavLink to={"#"} target="_blank">
           <Image
-            src="./assets/Youtube.svg"
+            src="/assets/Youtube.svg"
             alt="Youtube svg"
             h={"20px"}
             w={"20px"}
@@ -75,7 +75,7 @@ export default function Header() {
         </NavLink>
         <NavLink to={"#"} target="_blank">
           <Image
-            src="./assets/Facebook.svg"
+            src="/assets/Facebook.svg"
             alt="Facebook svg"
             h={"20px"}
             w={"20px"}
@@ -87,7 +87,7 @@ export default function Header() {
           target="_blank"
         >
           <Image
-            src="./assets/Linkedin.svg"
+            src="/assets/Linkedin.svg"
             alt="Linkedin svg"
             h={"20px"}
             w={"20px"}
@@ -96,7 +96,7 @@ export default function Header() {
         </NavLink>
         <NavLink to={"#"} target="_blank">
           <Image
-            src="./assets/Whatsapp.svg"
+            src="/assets/Whatsapp.svg"
             alt="Whatsapp svg"
             h={"20px"}
             w={"20px"}

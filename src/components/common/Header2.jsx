@@ -9,9 +9,10 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-  Input
+ 
 } from '@chakra-ui/react'
 import { useDisclosure } from "@chakra-ui/react";
+import { Link } from "@chakra-ui/react";
 
 
 
@@ -42,8 +43,8 @@ export default function Header2() {
       ></Image></DrawerHeader>
 
           <DrawerBody>
-          <UnorderedList fontFamily="Georgia, serif"  display={"flex"} flexDirection={'column'} gap={4} color={'black'}>
-          <NavLink to="#">Home</NavLink>
+          <UnorderedList      fontFamily={"Georgia, serif"} display={"flex"} flexDirection={'column'} gap={4} color={'black'}>
+          <NavLink to="/" >Home</NavLink>
           <NavLink to="#">About Us</NavLink>
           <NavLink to="#">Packages</NavLink>
           <NavLink to="#">Dates</NavLink>
@@ -63,7 +64,7 @@ export default function Header2() {
     >
     <NavLink to={'/'}>
       <Image
-        src="./assets/gd logo.gif"
+        src="/assets/gd logo.gif"
         height={"50px"}
         width={"100px"}
         m={2}
@@ -71,11 +72,12 @@ export default function Header2() {
       ></Image>
       </NavLink>
       {isLargerThan980 ? (
-        <UnorderedList display={"flex"} gap={4} color={'white'}>
-          <NavLink to="#">Home</NavLink>
-          <NavLink to="#">About Us</NavLink>
-          <NavLink to="#">Packages</NavLink>
-          <NavLink to="#">Dates</NavLink>
+        <UnorderedList      fontFamily= {"Georgia, serif"} display={"flex"} gap={4} color={'white'}>
+          <Link to="/">Home</Link>
+          <Link to="#">About Us</Link>
+          <Link href="#packages">Packages</Link>
+          <Link href="#accomodations">Accomodations</Link>
+          <Link href="#dates">Dates</Link>
         </UnorderedList>
       ) : (
         ""
@@ -87,7 +89,7 @@ export default function Header2() {
         ""
       ) : (
         <Image
-          src="./assets/BurgerNav.svg"
+          src="/assets/BurgerNav.svg"
           height={"60px"}
           m={2}
           cursor={"pointer"}

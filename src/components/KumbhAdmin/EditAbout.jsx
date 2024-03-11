@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef } from "react";
+import React, { useState, useMemo, useRef, useEffect } from "react";
 import { Box, Text, Textarea } from "@chakra-ui/react";
 import JoditEditor from "jodit-react";
 import AdminHeader from "../DashboardPage/AdminHeader";
@@ -8,27 +8,54 @@ import {
   Input,
   Button,
   useToast,
+  Image,
 } from "@chakra-ui/react";
+import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Sections from "./Sections";
-export default function CreatePackage() {
+
+export default function EditAbout() {
   const toast = useToast();
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const editor = useRef(null);
-  const [packageTitle, setPackageTitle] = useState("");
-  const [packageDes, setPackageDes] = useState("");
+  const [id, setId] = useState("");
+ 
+  const [AboutTitle, setAboutTitle] = useState("");
+  const [AboutDes, setAboutDes] = useState("");
   const [pic, setPic] = useState("");
   const [metaTitle, setMetaTitle] = useState("");
   const [metaDes, setMetaDes] = useState("");
-  const [packageAbout, setPackageAbout] = useState("");
+  const [aboutAbout, setaboutAbout] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
-    packageTitle: "",
-    packageDes: "",
+    AboutTitle: "",
+    AboutDes: "",
     metaTitle: "",
     metaDes: "",
   });
 
+  const fetchData = async () => {
+    try {
+      // console.log(title)
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getallabout`
+      );
+      const data = await response.json();
+      if (data.success === true) {
+        setAboutTitle(data.data[0].title);
+        setAboutDes(data.data[0].description);
+        setPic(data.data[0].image);
+        setMetaTitle(data.data[0].meta_title);
+        setMetaDes(data.data[0].meta_description);
+        setaboutAbout(data.data[0].about);
+        setId(data.data[0]._id);
+      } else {
+        navigate("/kumbhadmin/editAbout");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const postDetails = (pic) => {
     if (pic === undefined) {
       toast({
@@ -68,14 +95,17 @@ export default function CreatePackage() {
       });
     }
   };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handlesubmit = async () => {
     let errors = {};
-    if (packageTitle === "") {
-      errors.packageTitle = "Enter Package Title";
+    if (AboutTitle === "") {
+      errors.AboutTitle = "Enter About Title";
     }
-    if (packageDes === "") {
-      errors.packageDes = "Enter Package Description";
+    if (AboutDes === "") {
+      errors.AboutDes = "Enter About Description";
     }
     if (metaTitle === "") {
       errors.metaTitle = "Enter Meta Title";
@@ -84,8 +114,8 @@ export default function CreatePackage() {
       errors.metaDes = "Enter Meta Description";
     }
     if (
-      packageTitle === "" ||
-      packageDes === "" ||
+      AboutTitle === "" ||
+      AboutDes === "" ||
       metaTitle === "" ||
       metaDes === ""
     ) {
@@ -99,10 +129,10 @@ export default function CreatePackage() {
         isClosable: true,
       });
     } else {
-      if (packageAbout === "") {
+      if (aboutAbout === "") {
         toast({
-          title: "Enter package About Description",
-          description: "Please enter Package About",
+          title: "Enter About About Description",
+          description: "Please enter About About",
           position: "top",
           status: "error",
           duration: 2000,
@@ -113,17 +143,18 @@ export default function CreatePackage() {
         try {
           setLoading(true);
           const response = await fetch(
-            `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/createpackage`,
+            `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/editabout`,
             {
-              method: "POST",
+              method: "put",
               headers: {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                title: packageTitle,
+                id: id,
+                title: AboutTitle,
                 image: pic ? pic : "NA",
-                description: packageDes,
-                about: packageAbout,
+                description: AboutDes,
+                about: aboutAbout,
                 meta_title: metaTitle,
                 meta_description: metaDes,
               }),
@@ -133,14 +164,15 @@ export default function CreatePackage() {
           const data = await response.json();
           if (data.success === true) {
             toast({
-              title: "Successfully created",
-              description: "Section is created successfully",
+              title: "Successfully Editted",
+              description: "About is edited successfully",
               position: "top",
               status: "success",
               duration: 2000,
               isClosable: true,
             });
-            navigate('/kumbhadmin/editpackage')
+              navigate('/kumbhadmin')
+            return;
           } else {
             toast({
               title: data.msg,
@@ -208,20 +240,25 @@ export default function CreatePackage() {
         <Sections></Sections>
         <Box width={"80%"} ml={4} my={4} textAlign={"center"}>
           <FormControl>
-            <FormLabel fontFamily={"Georgia, serif"}>Package Title</FormLabel>
+            <FormLabel fontFamily={"Georgia, serif"}>
+              Edit About Title
+            </FormLabel>
             <Input
               type="text"
               bgColor={"white"}
               mb={4}
               borderWidth={2}
-              borderColor={error.packageTitle ? "red" : "white"}
-              value={packageTitle}
+              borderColor={error.AboutTitle ? "red" : "white"}
+              value={AboutTitle}
               onChange={(e) => {
-                setPackageTitle(e.target.value);
-                setError({ ...error, packageTitle: "" });
+                setAboutTitle(e.target.value);
+                setError({ ...error, AboutTitle: "" });
               }}
             />
-            <FormLabel fontFamily={"Georgia, serif"}>Package Image</FormLabel>
+            <Image src={pic} height={'20%'} width={'20%'} objectFit={'cover'}></Image>
+            <FormLabel fontFamily={"Georgia, serif"}>
+              Edit About Image
+            </FormLabel>
             <Input
               type="file"
               bgColor={"white"}
@@ -231,22 +268,22 @@ export default function CreatePackage() {
               onChange={(e) => postDetails(e.target.files[0])}
             />
             <Text mb="8px" fontFamily={"Georgia, serif"} textAlign={"left"}>
-              Package Short Description
+              Edit About Short Description
             </Text>
             <Textarea
               backgroundColor={"white"}
               borderWidth={2}
-              borderColor={error.packageDes ? "red" : "white"}
-              value={packageDes}
+              borderColor={error.AboutDes ? "red" : "white"}
+              value={AboutDes}
               resize={"none"}
-              maxLength={125}
+              maxLength={600}
               onChange={(e) => {
-                setPackageDes(e.target.value);
-                setError({ ...error, packageDes: "" });
+                setAboutDes(e.target.value);
+                setError({ ...error, AboutDes: "" });
               }}
             ></Textarea>
 
-            <FormLabel fontFamily={"Georgia, serif"}>Meta Title</FormLabel>
+            <FormLabel fontFamily={"Georgia, serif"}>Edit Meta Title</FormLabel>
             <Input
               type="text"
               bgColor={"white"}
@@ -260,7 +297,7 @@ export default function CreatePackage() {
               }}
             />
             <FormLabel fontFamily={"Georgia, serif"}>
-              Meta Description
+              Edit Meta Description
             </FormLabel>
             <Input
               type="text"
@@ -275,15 +312,15 @@ export default function CreatePackage() {
               }}
             />
             <Text mb="8px" fontFamily={"Georgia, serif"} textAlign={"left"}>
-              Package About
+              Edit About Page
             </Text>
             <JoditEditor
               placeholder="Your placeholder text"
               ref={editor}
-              value={packageAbout}
+              value={aboutAbout}
               config={config}
               onChange={(e) => {
-                setPackageAbout(e);
+                setaboutAbout(e);
               }}
             />
 
@@ -297,7 +334,7 @@ export default function CreatePackage() {
               m={4}
               onClick={handlesubmit}
             >
-              Submit
+              Edit
             </Button>
           </FormControl>
         </Box>

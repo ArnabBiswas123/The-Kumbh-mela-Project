@@ -11,20 +11,20 @@ import {
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import Sections from "./Sections";
-export default function CreatePackage() {
+export default function CreateAccomodation() {
   const toast = useToast();
   const navigate=useNavigate();
   const editor = useRef(null);
-  const [packageTitle, setPackageTitle] = useState("");
-  const [packageDes, setPackageDes] = useState("");
+  const [AccomodationTitle, setAccomodationTitle] = useState("");
+  const [AccomodationDes, setAccomodationDes] = useState("");
   const [pic, setPic] = useState("");
   const [metaTitle, setMetaTitle] = useState("");
   const [metaDes, setMetaDes] = useState("");
-  const [packageAbout, setPackageAbout] = useState("");
+  const [AccomodationAbout, setAccomodationAbout] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
-    packageTitle: "",
-    packageDes: "",
+    AccomodationTitle: "",
+    AccomodationDes: "",
     metaTitle: "",
     metaDes: "",
   });
@@ -71,11 +71,11 @@ export default function CreatePackage() {
 
   const handlesubmit = async () => {
     let errors = {};
-    if (packageTitle === "") {
-      errors.packageTitle = "Enter Package Title";
+    if (AccomodationTitle === "") {
+      errors.AccomodationTitle = "Enter Accomodation Title";
     }
-    if (packageDes === "") {
-      errors.packageDes = "Enter Package Description";
+    if (AccomodationDes === "") {
+      errors.AccomodationDes = "Enter Accomodation Description";
     }
     if (metaTitle === "") {
       errors.metaTitle = "Enter Meta Title";
@@ -84,8 +84,8 @@ export default function CreatePackage() {
       errors.metaDes = "Enter Meta Description";
     }
     if (
-      packageTitle === "" ||
-      packageDes === "" ||
+      AccomodationTitle === "" ||
+      AccomodationDes === "" ||
       metaTitle === "" ||
       metaDes === ""
     ) {
@@ -99,10 +99,10 @@ export default function CreatePackage() {
         isClosable: true,
       });
     } else {
-      if (packageAbout === "") {
+      if (AccomodationAbout === "") {
         toast({
-          title: "Enter package About Description",
-          description: "Please enter Package About",
+          title: "Enter Accomodation About Description",
+          description: "Please enter Accomodation About",
           position: "top",
           status: "error",
           duration: 2000,
@@ -113,17 +113,17 @@ export default function CreatePackage() {
         try {
           setLoading(true);
           const response = await fetch(
-            `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/createpackage`,
+            `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/createaccomodation`,
             {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                title: packageTitle,
+                title: AccomodationTitle,
                 image: pic ? pic : "NA",
-                description: packageDes,
-                about: packageAbout,
+                description: AccomodationDes,
+                about: AccomodationAbout,
                 meta_title: metaTitle,
                 meta_description: metaDes,
               }),
@@ -140,7 +140,7 @@ export default function CreatePackage() {
               duration: 2000,
               isClosable: true,
             });
-            navigate('/kumbhadmin/editpackage')
+            navigate('/kumbhadmin/editAccomodation')
           } else {
             toast({
               title: data.msg,
@@ -208,20 +208,20 @@ export default function CreatePackage() {
         <Sections></Sections>
         <Box width={"80%"} ml={4} my={4} textAlign={"center"}>
           <FormControl>
-            <FormLabel fontFamily={"Georgia, serif"}>Package Title</FormLabel>
+            <FormLabel fontFamily={"Georgia, serif"}>Accomodation Title</FormLabel>
             <Input
               type="text"
               bgColor={"white"}
               mb={4}
               borderWidth={2}
-              borderColor={error.packageTitle ? "red" : "white"}
-              value={packageTitle}
+              borderColor={error.AccomodationTitle ? "red" : "white"}
+              value={AccomodationTitle}
               onChange={(e) => {
-                setPackageTitle(e.target.value);
-                setError({ ...error, packageTitle: "" });
+                setAccomodationTitle(e.target.value);
+                setError({ ...error, AccomodationTitle: "" });
               }}
             />
-            <FormLabel fontFamily={"Georgia, serif"}>Package Image</FormLabel>
+            <FormLabel fontFamily={"Georgia, serif"}>Accomodation Image</FormLabel>
             <Input
               type="file"
               bgColor={"white"}
@@ -231,18 +231,18 @@ export default function CreatePackage() {
               onChange={(e) => postDetails(e.target.files[0])}
             />
             <Text mb="8px" fontFamily={"Georgia, serif"} textAlign={"left"}>
-              Package Short Description
+              Accomodation Short Description
             </Text>
             <Textarea
               backgroundColor={"white"}
               borderWidth={2}
-              borderColor={error.packageDes ? "red" : "white"}
-              value={packageDes}
+              borderColor={error.AccomodationDes ? "red" : "white"}
+              value={AccomodationDes}
               resize={"none"}
               maxLength={125}
               onChange={(e) => {
-                setPackageDes(e.target.value);
-                setError({ ...error, packageDes: "" });
+                setAccomodationDes(e.target.value);
+                setError({ ...error, AccomodationDes: "" });
               }}
             ></Textarea>
 
@@ -275,15 +275,15 @@ export default function CreatePackage() {
               }}
             />
             <Text mb="8px" fontFamily={"Georgia, serif"} textAlign={"left"}>
-              Package About
+              Accomodation About
             </Text>
             <JoditEditor
               placeholder="Your placeholder text"
               ref={editor}
-              value={packageAbout}
+              value={AccomodationAbout}
               config={config}
               onChange={(e) => {
-                setPackageAbout(e);
+                setAccomodationAbout(e);
               }}
             />
 

@@ -7,18 +7,38 @@ import {
   Heading,
   CardFooter,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export default function KumbhMelaPackages() {
+  const [packages, setPackages] = useState([]);
+  const navigate=useNavigate();
+  const fetchData = async (req, res) => {
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getallfrontpagedata`
+      );
+      const data = await res.json();
+      setPackages(data.packages);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <>
       <Text
         fontWeight={"bold"}
         textAlign={"center"}
-       
         fontSize={25}
         m={"2%"}
-        fontFamily="Georgia, serif" 
+        fontFamily="Georgia, serif"
+        id="packages"
       >
         KUMBH MELA PACKAGES
       </Text>
@@ -31,155 +51,51 @@ export default function KumbhMelaPackages() {
         gap={3}
         mb={"5%"}
       >
-        <Card
-          maxW={["90%", "60%", "50%", "20%"]}
-          maxH={["40%", "40%", "40%", "40%"]}
-          p={0}
-          backgroundColor={"white"}
-          shadow={"dark-lg"}
-          cursor={'pointer'}
-          _hover={{ transform: 'scale(1.02)' }}
-        transition="transform 0.3s ease-in-out"
-        >
-          <LazyLoadImage
-            src="./assets/Packages.jpg"
-            alt="packages"
-            style={{ height: "200px", borderRadius: "2%" }}
-          ></LazyLoadImage>
-          <CardBody>
-            <Stack>
-              <Heading fontFamily="Georgia, serif"  size="md">Kumbh Mela Package 1 Nights 2 Days</Heading>
-              <Text fontFamily="Georgia, serif" fontSize="md">
-                In this bundle of 1 nights and 2 days Kumbh Mela Tour Package in
-                Prayagraj 2025, youll embark on a journey towards Nirv
-              </Text>
-            </Stack>
-          </CardBody>
-          <CardFooter display={"flex"} justifyContent={"center"}>
-            <Text
-              color={"red"}
-              h={"10%"}
-              w={"50%"}
-              textAlign={"center"}
+        {packages.length>0?packages.map((item)=>{
+            return(
+              <Card
+              maxW={["90%", "60%", "50%", "20%"]}
+              maxH={["40%", "40%", "40%", "40%"]}
+              p={0}
+              backgroundColor={"white"}
+              shadow={"dark-lg"}
               cursor={"pointer"}
+              _hover={{ transform: "scale(1.02)" }}
+              transition="transform 0.3s ease-in-out"
             >
-              View Details
-            </Text>
-          </CardFooter>
-        </Card>
+              
+              <LazyLoadImage
+                src={item.image}
+                alt="packages"
+                style={{ height: "200px", borderRadius: "2%" }}
+              ></LazyLoadImage>
+              <CardBody>
+                <Stack>
+                  <Heading fontFamily="Georgia, serif" size="md">
+                    {item.title}
+                  </Heading>
+                  <Text fontFamily="Georgia, serif" fontSize="md">
+                    {item.description}
+                  </Text>
+                </Stack>
+              </CardBody>
+              <CardFooter display={"flex"} justifyContent={"center"}>
+                <Text
+                  color={"red"}
+                  h={"10%"}
+                  w={"50%"}
+                  textAlign={"center"}
+                  cursor={"pointer"}
+                  onClick={()=>{navigate(`/packages/${item.title}`)}}
+                >
+                  View Details
+                </Text>
+              </CardFooter>
+            </Card>
+            )
+        }):''}
 
-        <Card
-          maxW={["90%", "60%", "50%", "20%"]}
-          maxH={["40%", "40%", "40%", "40%"]}
-          p={0}
-          backgroundColor={"white"}
-          shadow={"dark-lg"}
-          cursor={'pointer'}
-          _hover={{ transform: 'scale(1.02)' }}
-        transition="transform 0.3s ease-in-out"
-        >
-          <LazyLoadImage
-            src="./assets/Package2.jpg"
-            alt="packages"
-            style={{ height: "200px", borderRadius: "2%" }}
-            borderTopRadius={"md"}
-            // loading="lazy"
-          ></LazyLoadImage>
-          <CardBody>
-            <Stack>
-              <Heading fontFamily="Georgia, serif" size="md">Kumbh Mela Package 2 Nights 3 Days</Heading>
-              <Text fontFamily="Georgia, serif" fontSize="md">
-                Come and savor every bit of spirituality at Kumbh Mela with our
-                2 nights 3 days Kumbh Mela Package. Plan your Kumbh Mela
-              </Text>
-            </Stack>
-          </CardBody>
-          <CardFooter display={"flex"} justifyContent={"center"}>
-            <Text
-              color={"red"}
-              h={"10%"}
-              w={"50%"}
-              textAlign={"center"}
-              cursor={"pointer"}
-            >
-              View Details
-            </Text>
-          </CardFooter>
-        </Card>
 
-        <Card
-          maxW={["90%", "60%", "50%", "20%"]}
-          maxH={["40%", "40%", "40%", "40%"]}
-          p={0}
-          backgroundColor={"white"}
-          shadow={"dark-lg"}
-          cursor={'pointer'}
-          _hover={{ transform: 'scale(1.02)' }}
-        transition="transform 0.3s ease-in-out"
-        >
-          <LazyLoadImage
-            src="./assets/Package3.jpg"
-            alt="packages"
-            style={{ height: "200px", borderRadius: "2%" }}
-          ></LazyLoadImage>
-          <CardBody>
-            <Stack>
-              <Heading fontFamily="Georgia, serif" size="md">Kumbh Mela Package 3 Nights 4 Days</Heading>
-              <Text fontFamily="Georgia, serif" fontSize="md">
-                Come and savor every bit of spirituality at Kumbh Mela with our
-                2 nights 3 days Kumbh Mela Package. Plan your Kumbh Mela
-              </Text>
-            </Stack>
-          </CardBody>
-          <CardFooter display={"flex"} justifyContent={"center"}>
-            <Text
-              color={"red"}
-              h={"10%"}
-              w={"50%"}
-              textAlign={"center"}
-              cursor={"pointer"}
-            >
-              View Details
-            </Text>
-          </CardFooter>
-        </Card>
-
-        <Card
-          maxW={["90%", "60%", "50%", "20%"]}
-          maxH={["40%", "40%", "40%", "40%"]}
-          p={0}
-          backgroundColor={"white"}
-          shadow={"dark-lg"}
-          cursor={'pointer'}
-          _hover={{ transform: 'scale(1.02)' }}
-        transition="transform 0.3s ease-in-out"
-        >
-          <LazyLoadImage
-            src="./assets/Package4.jpg"
-            alt="packages"
-            style={{ height: "200px", borderRadius: "2%" }}
-          ></LazyLoadImage>
-          <CardBody>
-            <Stack>
-              <Heading size="md" fontFamily="Georgia, serif" > Kumbh Mela Shahi Snan Package</Heading>
-              <Text fontFamily="Georgia, serif" fontSize="md">
-                Immerse yourself in our sacred Shahi Snan Package or Kumbh Mela
-                package for 4 nights and 5 days, where youll come and s
-              </Text>
-            </Stack>
-          </CardBody>
-          <CardFooter display={"flex"} justifyContent={"center"}>
-            <Text
-              color={"red"}
-              h={"10%"}
-              w={"50%"}
-              textAlign={"center"}
-              cursor={"pointer"}
-            >
-              View Details
-            </Text>
-          </CardFooter>
-        </Card>
       </Center>
     </>
   );

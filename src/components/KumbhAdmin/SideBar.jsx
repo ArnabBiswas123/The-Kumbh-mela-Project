@@ -13,26 +13,27 @@ export default function SideBar() {
       }}
     >
       <Menu>
-          <SubMenu label="About">
-          <MenuItem component={<Link to="/createsection" />}>
-            {" "}
-            Create Section
-          </MenuItem>
-          <MenuItem component={<Link to="/editsection" />}>
-            {" "}
-            Edit or Delete Section
-          </MenuItem>
-          <MenuItem component={<Link to="/aboutcreatemetatags" />}>Create meta tags</MenuItem>
-          <MenuItem component={<Link to="/abouteditmetatags" />}>Edit or Delete meta tags</MenuItem>
-        </SubMenu>
+        <MenuItem component={<Link to="/kumbhadmin/editabout" />}>
+                About
+        </MenuItem>
         <SubMenu label="Packages">
-          <MenuItem component={<Link to="/createpackage" />}>
+          <MenuItem component={<Link to="/kumbhadmin/createpackage" />}>
             {" "}
             Create Packages
           </MenuItem>
-          <MenuItem component={<Link to="/editpackage" />}>
+          <MenuItem component={<Link to="/kumbhadmin/editpackage" />}>
             {" "}
             Edit or Delete package
+          </MenuItem>
+        </SubMenu>
+        <SubMenu label="Accomodations">
+          <MenuItem component={<Link to="/kumbhadmin/createaccomodation" />}>
+            {" "}
+            Create Accomodations
+          </MenuItem>
+          <MenuItem component={<Link to="/kumbhadmin/editaccomodation" />}>
+            {" "}
+            Edit or Delete Accomodations
           </MenuItem>
         </SubMenu>
       

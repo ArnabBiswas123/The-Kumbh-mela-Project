@@ -4,13 +4,15 @@ import AboutPage from "./pages/AboutPage";
 import LoginPage from "./pages/LoginPage";
 import Dashboardpage from "./pages/Dashboardpage";
 import KumbhAdmin from "./pages/KumbhAdmin";
-import CreateSection from "./components/KumbhAdmin/CreateSection";
-import EditSection from "./components/KumbhAdmin/EditSection";
-import CreateMetatags from "./components/KumbhAdmin/CreateMetatags";
-import EditMetaTags from "./components/KumbhAdmin/EditMetaTags";
 import CreatePackage from "./components/KumbhAdmin/CreatePackage";
 import EditPackage from "./components/KumbhAdmin/EditPackage";
 import EditPackageById from "./components/KumbhAdmin/EditPackageById";
+import PackageDetails from "./pages/PackageDetails";
+import CreateAccomodation from "./components/KumbhAdmin/CreateAccomodation"
+import EditAccomodation from "./components/KumbhAdmin/EditAccomodation";
+import EditAccomodationById from "./components/KumbhAdmin/EditAccomodationById";
+import AccomodationDetails from "./pages/AccomodationDetails";
+import EditAbout from "./components/KumbhAdmin/EditAbout";
 function App() {
   return (
     <>
@@ -20,13 +22,19 @@ function App() {
         <Route path="/adminlogin" element={<LoginPage></LoginPage>}></Route>
         <Route path="/dashboard" element={<Dashboardpage></Dashboardpage>}></Route>
         <Route path="/kumbhadmin" element={<KumbhAdmin></KumbhAdmin>}></Route>
-        <Route path="/createsection" element={<CreateSection></CreateSection>}></Route>
-        <Route path="/editsection" element={<EditSection></EditSection>}></Route>
-        <Route path="/aboutcreatemetatags" element={<CreateMetatags></CreateMetatags>}></Route>
-        <Route path="/abouteditmetatags" element={<EditMetaTags></EditMetaTags>}></Route>
-        <Route path="/createpackage" element={<CreatePackage></CreatePackage>}></Route>
-        <Route path="/editpackage" element={<EditPackage></EditPackage>}></Route>
-        <Route path="/editpackage/:title" element={<EditPackageById></EditPackageById>}></Route>
+        <Route path="/kumbhadmin/editabout" element={<EditAbout></EditAbout>}></Route>
+       
+        
+       
+       
+        <Route path="/kumbhadmin/createpackage" element={<CreatePackage></CreatePackage>}></Route>
+        <Route path="/kumbhadmin/editpackage" element={<EditPackage></EditPackage>}></Route>
+        <Route path="/kumbhadmin/editpackage/:title" element={<EditPackageById></EditPackageById>}></Route>
+        <Route path="/packages/:title" element={<PackageDetails></PackageDetails>}></Route>
+        <Route path="/accomodations/:title" element={<AccomodationDetails></AccomodationDetails>}></Route>
+        <Route path="/kumbhadmin/createaccomodation" element={<CreateAccomodation></CreateAccomodation>}></Route>
+        <Route path="/kumbhadmin/editaccomodation" element={<EditAccomodation></EditAccomodation>}></Route>
+        <Route path="/kumbhadmin/editaccomodation/:title" element={<EditAccomodationById></EditAccomodationById>}></Route>
       </Routes>
     </>
   );

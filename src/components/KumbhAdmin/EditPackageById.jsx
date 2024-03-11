@@ -20,7 +20,6 @@ export default function EditPackageById() {
   const editor = useRef(null);
   const { title } = useParams();
   const [id, setId] = useState("");
-  const [fetchAgain, setFetchAgain] = useState(false);
   const [packageTitle, setPackageTitle] = useState("");
   const [packageDes, setPackageDes] = useState("");
   const [pic, setPic] = useState("");
@@ -51,7 +50,7 @@ export default function EditPackageById() {
         setPackageAbout(data.data.about);
         setId(data.data._id);
       } else {
-        navigate("/editpackage");
+        navigate("/kumbhadmin/editpackage");
       }
     } catch (error) {
       console.log(error);
@@ -98,7 +97,7 @@ export default function EditPackageById() {
   };
   useEffect(() => {
     fetchData();
-  }, [fetchAgain]);
+  }, []);
 
   const handlesubmit = async () => {
     let errors = {};
@@ -172,7 +171,7 @@ export default function EditPackageById() {
               duration: 2000,
               isClosable: true,
             });
-            setFetchAgain((prev) => !prev);
+          navigate('/kumbhadmin/editpackage')
             return;
           } else {
             toast({
@@ -277,7 +276,7 @@ export default function EditPackageById() {
               borderColor={error.packageDes ? "red" : "white"}
               value={packageDes}
               resize={"none"}
-              maxLength={20}
+              maxLength={125}
               onChange={(e) => {
                 setPackageDes(e.target.value);
                 setError({ ...error, packageDes: "" });

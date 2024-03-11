@@ -13,6 +13,7 @@ import Footer from "../components/common/Footer";
 export default function HomePage() {
   const [isLargerThan980] = useMediaQuery("(min-width: 980px)");
 
+
   return (
     <>
       {!isLargerThan980 ? <MobileHeader></MobileHeader> : <Header></Header>}
@@ -26,3 +27,4 @@ export default function HomePage() {
     </>
   );
 }
+ 
