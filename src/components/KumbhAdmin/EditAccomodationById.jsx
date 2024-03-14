@@ -20,7 +20,7 @@ export default function EditAccomodationById() {
   const editor = useRef(null);
   const { title } = useParams();
   const [id, setId] = useState("");
- 
+
   const [AccomodationTitle, setAccomodationTitle] = useState("");
   const [AccomodationDes, setAccomodationDes] = useState("");
   const [pic, setPic] = useState("");
@@ -38,8 +38,17 @@ export default function EditAccomodationById() {
   const fetchData = async () => {
     try {
       // console.log(title)
+      const token = localStorage.getItem("token");
+      if (!token) {
+        navigate("/adminlogin");
+      }
       const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getaccomodationbytitle/${title}`
+        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getaccomodationbytitleadmin/${title}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       const data = await response.json();
       if (data.success === true) {
@@ -143,12 +152,17 @@ export default function EditAccomodationById() {
         //API call
         try {
           setLoading(true);
+          const token = localStorage.getItem("token");
+          if (!token) {
+            navigate("/adminlogin");
+          }
           const response = await fetch(
             `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/editaccomodation`,
             {
               method: "put",
               headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
               },
               body: JSON.stringify({
                 id: id,
@@ -172,17 +186,22 @@ export default function EditAccomodationById() {
               duration: 2000,
               isClosable: true,
             });
-              navigate('/kumbhadmin/editaccomodation')
+            navigate("/kumbhadmin/editaccomodation");
             return;
           } else {
-            toast({
-              title: data.msg,
-              description: "Error occured",
-              position: "top",
-              status: "error",
-              duration: 2000,
-              isClosable: true,
-            });
+            if(data.msg==='Token is not correct'|| data.msg==='Token is not there'){
+              navigate('/adminlogin')
+            }else{
+              toast({
+                title: data.msg,
+                description: "Error occured",
+                position: "top",
+                status: "error",
+                duration: 2000,
+                isClosable: true,
+              });
+            }
+          
           }
         } catch (error) {
           setLoading(false);
@@ -256,7 +275,12 @@ export default function EditAccomodationById() {
                 setError({ ...error, AccomodationTitle: "" });
               }}
             />
-            <Image src={pic} height={'20%'} width={'20%'} objectFit={'cover'}></Image>
+            <Image
+              src={pic}
+              height={"20%"}
+              width={"20%"}
+              objectFit={"cover"}
+            ></Image>
             <FormLabel fontFamily={"Georgia, serif"}>
               Edit Accomodation Image
             </FormLabel>

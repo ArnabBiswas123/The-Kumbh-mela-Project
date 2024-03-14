@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import LoginPage from "./pages/LoginPage";
-import Dashboardpage from "./pages/Dashboardpage";
+// import Dashboardpage from "./pages/Dashboardpage";
 import KumbhAdmin from "./pages/KumbhAdmin";
 import CreatePackage from "./components/KumbhAdmin/CreatePackage";
 import EditPackage from "./components/KumbhAdmin/EditPackage";
@@ -20,7 +20,7 @@ function App() {
         <Route path="/" element={<HomePage></HomePage>}></Route>
         <Route path="/kumbhinfo" element={<AboutPage></AboutPage>}></Route>
         <Route path="/adminlogin" element={<LoginPage></LoginPage>}></Route>
-        <Route path="/dashboard" element={<Dashboardpage></Dashboardpage>}></Route>
+        {/* <Route path="/dashboard" element={<Dashboardpage></Dashboardpage>}></Route> */}
         <Route path="/kumbhadmin" element={<KumbhAdmin></KumbhAdmin>}></Route>
         <Route path="/kumbhadmin/editabout" element={<EditAbout></EditAbout>}></Route>
        

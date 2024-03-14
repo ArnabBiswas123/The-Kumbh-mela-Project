@@ -15,7 +15,7 @@ export default function KumbhInfo() {
     try {
       // console.log(title)
       const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getallabout`
+        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getallaboutfront`
       );
       const data = await response.json();
       console.log(data)

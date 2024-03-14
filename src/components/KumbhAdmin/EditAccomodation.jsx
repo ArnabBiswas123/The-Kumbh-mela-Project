@@ -23,22 +23,22 @@ export default function EditAccomodation() {
 
   const fetchdata = async () => {
     try {
+      const token=localStorage.getItem('token');
+      if(!token){
+        navigate('/adminlogin')
+      }
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getallaccomodation`
+        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getallaccomodation`,{
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       const data = await res.json();
       if (data.success === false) {
-        toast({
-          title: data.msg,
-          description: "Some error happened",
-          position: "top",
-          status: "error",
-          duration: 2000,
-          isClosable: true,
-        });
-        return;
+        navigate("/adminlogin");
       }
-      console.log(data);
+      // console.log(data);
       setAccomodations(data.data);
     } catch (error) {
       console.log(error);
@@ -47,10 +47,14 @@ export default function EditAccomodation() {
 
   const handleDelete = async (id) => {
     try {
+      const token=localStorage.getItem('token');
       const res = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/deleteaccomodation/${id}`,
         {
           method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
       const data = await res.json();
@@ -65,15 +69,22 @@ export default function EditAccomodation() {
         });
         setFetchAgain((prev) => !prev);
         return;
+      }else{
+
+        if(data.msg==='Token is not correct'|| data.msg==='Token is not there'){
+          navigate('/adminlogin')
+        }else{
+          toast({
+            title: data.msg,
+            description: "Some error happened",
+            position: "top",
+            status: "error",
+            duration: 2000,
+            isClosable: true,
+          });
+        }
       }
-      toast({
-        title: data.msg,
-        description: "Some error happened",
-        position: "top",
-        status: "error",
-        duration: 2000,
-        isClosable: true,
-      });
+     
     } catch (error) {
       console.log(error);
     }

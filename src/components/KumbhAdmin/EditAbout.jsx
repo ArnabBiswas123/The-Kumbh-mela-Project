@@ -10,7 +10,7 @@ import {
   useToast,
   Image,
 } from "@chakra-ui/react";
-import { useParams } from "react-router-dom";
+
 import { useNavigate } from "react-router-dom";
 import Sections from "./Sections";
 
@@ -34,11 +34,15 @@ export default function EditAbout() {
     metaDes: "",
   });
 
-  const fetchData = async () => {
+  const fetchData = async (token) => {
     try {
       // console.log(title)
       const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getallabout`
+        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getallabout`,{
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       const data = await response.json();
       if (data.success === true) {
@@ -50,7 +54,7 @@ export default function EditAbout() {
         setaboutAbout(data.data[0].about);
         setId(data.data[0]._id);
       } else {
-        navigate("/kumbhadmin/editAbout");
+        navigate("/adminlogin");
       }
     } catch (error) {
       console.log(error);
@@ -96,7 +100,11 @@ export default function EditAbout() {
     }
   };
   useEffect(() => {
-    fetchData();
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/adminlogin");
+    }
+    fetchData(token);
   }, []);
 
   const handlesubmit = async () => {
@@ -142,12 +150,14 @@ export default function EditAbout() {
         //API call
         try {
           setLoading(true);
+          const token=localStorage.getItem('token');
           const response = await fetch(
             `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/editabout`,
             {
               method: "put",
               headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
               },
               body: JSON.stringify({
                 id: id,
@@ -174,14 +184,20 @@ export default function EditAbout() {
               navigate('/kumbhadmin')
             return;
           } else {
-            toast({
-              title: data.msg,
-              description: "Error occured",
-              position: "top",
-              status: "error",
-              duration: 2000,
-              isClosable: true,
-            });
+            if(data.msg==='Token is not correct'|| data.msg==='Token is not there'){
+              navigate('/adminlogin')
+            }
+            else{
+              toast({
+                title: data.msg,
+                description: "Error occured",
+                position: "top",
+                status: "error",
+                duration: 2000,
+                isClosable: true,
+              });
+            }
+           
           }
         } catch (error) {
           setLoading(false);

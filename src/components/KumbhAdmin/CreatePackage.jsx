@@ -112,12 +112,14 @@ export default function CreatePackage() {
         //API call
         try {
           setLoading(true);
+          const token=localStorage.getItem('token');
           const response = await fetch(
             `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/createpackage`,
             {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
               },
               body: JSON.stringify({
                 title: packageTitle,
@@ -142,14 +144,21 @@ export default function CreatePackage() {
             });
             navigate('/kumbhadmin/editpackage')
           } else {
-            toast({
-              title: data.msg,
-              description: "Error occured",
-              position: "top",
-              status: "error",
-              duration: 2000,
-              isClosable: true,
-            });
+            if(data.msg==='Token is not correct'|| data.msg==='Token is not there'){
+              navigate('/adminlogin')
+            }else{
+              toast({
+                title: data.msg,
+                description: "Error occured",
+                position: "top",
+                status: "error",
+                duration: 2000,
+                isClosable: true,
+              });
+            }
+
+
+          
           }
         } catch (error) {
           setLoading(false);

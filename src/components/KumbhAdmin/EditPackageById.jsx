@@ -2,7 +2,7 @@ import React, { useState, useMemo, useRef, useEffect } from "react";
 import { Box, Text, Textarea } from "@chakra-ui/react";
 import JoditEditor from "jodit-react";
 import AdminHeader from "../DashboardPage/AdminHeader";
-import {
+import { 
   FormControl,
   FormLabel,
   Input,
@@ -36,9 +36,17 @@ export default function EditPackageById() {
 
   const fetchData = async () => {
     try {
+      const token=localStorage.getItem('token');
+      if(!token){
+        navigate('/adminlogin')
+      }
       // console.log(title)
       const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getpackagebytitle/${title}`
+        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getpackagebytitle/${title}`,{
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       const data = await response.json();
       if (data.success === true) {
@@ -139,15 +147,21 @@ export default function EditPackageById() {
           isClosable: true,
         });
       } else {
+
         //API call
         try {
           setLoading(true);
+          const token = localStorage.getItem("token");
+          if (!token) {
+            navigate("/adminlogin");
+          }
           const response = await fetch(
             `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/editpackage`,
             {
               method: "put",
               headers: {
                 "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
               },
               body: JSON.stringify({
                 id: id,

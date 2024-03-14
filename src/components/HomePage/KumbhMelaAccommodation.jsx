@@ -17,7 +17,7 @@ export default function KumbhMelaAccommodation() {
   const fetchData = async (req, res) => {
     try {
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getallfrontpagedata`
+        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getallfrontpageaccomodation`
       );
       const data = await res.json();
       setAccomodation(data.accomodations);
