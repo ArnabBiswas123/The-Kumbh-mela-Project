@@ -36,7 +36,9 @@ export default function SideBar() {
             Edit or Delete Accomodations
           </MenuItem>
         </SubMenu>
-      
+        <MenuItem component={<Link to="/kumbhadmin/customerdetails" />}>
+                Customer Details
+        </MenuItem>
       </Menu>
     </Sidebar>
   );

@@ -111,7 +111,7 @@ export default function EditAccomodation() {
             <Table variant="simple">
               <Thead bgColor={"white"}>
                 <Tr>
-                  <Th fontFamily="Georgia, serif"> Section Title</Th>
+                  <Th fontFamily="Georgia, serif"> Accomodation Title</Th>
                   <Th fontFamily="Georgia, serif">Edit</Th>
                   <Th fontFamily="Georgia, serif">Delete</Th>
                 </Tr>

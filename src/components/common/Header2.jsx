@@ -101,6 +101,7 @@ export default function Header2() {
             duration: 4000,
             isClosable: true,
           });
+          onModalClose();
         } else {
           toast({
             title: data.msg,
@@ -110,9 +111,11 @@ export default function Header2() {
             duration: 4000,
             isClosable: true,
           });
+          onModalClose();
         }
       } catch (error) {
         setLoading(false);
+        onModalClose();
         console.log(error);
       }
     }

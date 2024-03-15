@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Box, Image } from "@chakra-ui/react";
+import React from "react";
 import AdminHeader from "../DashboardPage/AdminHeader";
 import {
   Table,
@@ -10,25 +9,32 @@ import {
   Td,
   TableContainer,
   useToast,
+  Image,
+  Box,
+  useStatStyles,
 } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Sections from "./Sections";
+import DetailsModal from "./DetailsModal";
 
-export default function EditPackage() {
-  const navigate=useNavigate();
-  const [packages, setpackages] = useState([]);
-  const [fetchAgain, setFetchAgain] = useState(false);
-  const toast = useToast();
+export default function CustomerDetails() {
+  const [customers, setCustomers] = useState([]);
+  const navigate = useNavigate();
+  const [fetchAgain,setFetchAgain]=useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null); // to store the selected item
 
+ const toast=useToast();
   const fetchdata = async () => {
     try {
-      const token=localStorage.getItem('token');
-      if(!token){
-        navigate('/adminlogin')
+      const token = localStorage.getItem("token");
+      if (!token) {
+        navigate("/adminlogin");
       }
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/getallpackage`,{
+        `${process.env.REACT_APP_BACKEND_URL}api/v1/customer/getallcustomer`,
+        {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -38,19 +44,18 @@ export default function EditPackage() {
       if (data.success === false) {
         navigate("/adminlogin");
       }
-      // console.log(data);
-      setpackages(data.data);
+    //   console.log(data.customer);
+      setCustomers(data.customer)
     } catch (error) {
-      console.log(error);
+        console.log(error);
     }
   };
 
   const handleDelete = async (id) => {
     try {
-      // console.log(id)
       const token=localStorage.getItem('token');
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}api/v1/kumbh/deletepackage/${id}`,
+        `${process.env.REACT_APP_BACKEND_URL}api/v1/customer/deletecustomer/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -71,6 +76,7 @@ export default function EditPackage() {
         setFetchAgain((prev) => !prev);
         return;
       }else{
+
         if(data.msg==='Token is not correct'|| data.msg==='Token is not there'){
           navigate('/adminlogin')
         }else{
@@ -88,6 +94,11 @@ export default function EditPackage() {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleViewDetails = (item) => {
+    setSelectedItem(item);
+    setIsOpen(true);
   };
 
   useEffect(() => {
@@ -108,35 +119,37 @@ export default function EditPackage() {
         <Sections></Sections>
         <Box width={"80%"} ml={4} my={4} textAlign={"center"}>
           <TableContainer>
-            <Table variant="simple">
+            <Table>
               <Thead bgColor={"white"}>
                 <Tr>
-                  <Th fontFamily="Georgia, serif"> Package Title</Th>
-                  <Th fontFamily="Georgia, serif">Edit</Th>
+                  <Th fontFamily="Georgia, serif"> Customer Name</Th>
+                  <Th fontFamily="Georgia, serif">Mobile Number</Th>
+                  <Th fontFamily="Georgia, serif">Email</Th>
+                  <Th fontFamily="Georgia, serif">View</Th>
                   <Th fontFamily="Georgia, serif">Delete</Th>
                 </Tr>
               </Thead>
               <Tbody>
-                {packages.length > 0
-                  ? packages.map((item, index) => {
-                      return (
-                        <Tr key={index}>
-                          <Td fontFamily="Georgia, serif">{item.title}</Td>
-
-                          <Td
+                {customers.length>0?customers.map((item,index)=>{
+                        return(
+                            <Tr key={index}>
+                            <Td fontFamily="Georgia, serif">{item.name}</Td>
+                            <Td fontFamily="Georgia, serif">{item.mobile}</Td>
+                            <Td fontFamily="Georgia, serif">{item.email}</Td>
+                            <Td
                             cursor={"pointer"}
-                            onClick={() => {navigate(`/kumbhadmin/editpackage/${item.title}`)}}
+                            onClick={() => handleViewDetails(item)}
                           >
                             {" "}
                             <Image
-                              src="/assets/edit.png"
-                              alt="edit"
+                              src="/assets/eye.png"
+                              alt="view"
                               h={"20px"}
                               w={"20px"}
                               ml={2}
                             ></Image>
                           </Td>
-                          <Td
+                            <Td
                             cursor={"pointer"}
                             onClick={() => handleDelete(item._id)}
                           >
@@ -149,15 +162,22 @@ export default function EditPackage() {
                               ml={2}
                             ></Image>
                           </Td>
-                        </Tr>
-                      );
-                    })
-                  : ""}
+                          </Tr>
+                        )
+                }):''}
               </Tbody>
             </Table>
           </TableContainer>
         </Box>
       </Box>
+       {/* Modal */}
+       {selectedItem && (
+        <DetailsModal
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          item={selectedItem}
+        />
+      )}
     </Box>
   );
 }

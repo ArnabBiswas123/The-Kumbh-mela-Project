@@ -1,8 +1,19 @@
 import React from "react";
 import { Box, Image, Button, Text } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminHeader() {
+  const navigate=useNavigate();
+  const handleLogout=()=>{
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/adminlogin");
+    }else{
+      localStorage.removeItem('token');
+      navigate("/adminlogin");
+    }
+  }
   return (
     <Box
       minW={"100%"}
@@ -23,7 +34,7 @@ export default function AdminHeader() {
       </NavLink>
       <Text color={'white'} fontFamily="Georgia, serif" textTransform="uppercase" fontSize="2xl">Welcome</Text>
 
-      <Button colorScheme="#EF3131" bgColor={"#EF3131"} color={"white"} m={2}>
+      <Button colorScheme="#EF3131" onClick={handleLogout} fontFamily="Georgia, serif" bgColor={"#EF3131"} color={"white"} m={2}>
         Logout
       </Button>
     </Box>
