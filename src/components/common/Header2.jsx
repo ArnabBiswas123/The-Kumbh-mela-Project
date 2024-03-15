@@ -83,7 +83,7 @@ export default function Header2() {
               name: name,
               mobile: mobile,
               email: email,
-              noOfPerson: noOfPerson,
+              no_of_person: noOfPerson,
               date: date,
               duration: duration,
               message: message,
