@@ -9,6 +9,7 @@ import Header from "../components/common/Header";
 import Header2 from "../components/common/Header2";
 import MobileHeader from "../components/common/MobileHeader";
 import Footer from "../components/common/Footer";
+import FloatingButton from "../components/common/FloatingButton";
 
 export default function HomePage() {
   const [isLargerThan980] = useMediaQuery("(min-width: 980px)");
@@ -23,6 +24,7 @@ export default function HomePage() {
       <AboutKumbh></AboutKumbh>
       <KumbhMelaPackages></KumbhMelaPackages>
       <KumbhMelaAccommodation></KumbhMelaAccommodation>
+      <FloatingButton></FloatingButton>
       <Footer></Footer>
     </>
   );
