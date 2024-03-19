@@ -14,6 +14,7 @@ import EditAccomodationById from "./components/KumbhAdmin/EditAccomodationById";
 import AccomodationDetails from "./pages/AccomodationDetails";
 import EditAbout from "./components/KumbhAdmin/EditAbout";
 import CustomerDetails from "./components/KumbhAdmin/CustomerDetails";
+import EnquiryDetails from "./components/KumbhAdmin/EnquiryDetails";
 function App() {
   return (
     <>
@@ -36,7 +37,8 @@ function App() {
         <Route path="/kumbhadmin/createaccomodation" element={<CreateAccomodation></CreateAccomodation>}></Route>
         <Route path="/kumbhadmin/editaccomodation" element={<EditAccomodation></EditAccomodation>}></Route>
         <Route path="/kumbhadmin/editaccomodation/:title" element={<EditAccomodationById></EditAccomodationById>}></Route>
-        <Route path="/kumbhadmin/customerdetails" element={<CustomerDetails></CustomerDetails>}></Route>
+        <Route path="/kumbhadmin/customerbookings" element={<CustomerDetails></CustomerDetails>}></Route>
+        <Route path="/kumbhadmin/customerenquires" element={<EnquiryDetails></EnquiryDetails>}></Route>
       </Routes>
     </>
   );

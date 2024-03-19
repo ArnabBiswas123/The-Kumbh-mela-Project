@@ -226,7 +226,7 @@ const FloatingButton = ({ onClick }) => {
                 <Input
                   type="text"
                   fontFamily={"Georgia, serif"}
-                  placeholder="No of person"
+                  placeholder="Address"
                   value={address}
                   focusBorderColor="white"
                   variant="filled"

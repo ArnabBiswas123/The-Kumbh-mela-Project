@@ -13,7 +13,7 @@ import {
 
 // Modal Component
 export default function DetailsModal({ isOpen, onClose, item }) {
-  console.log(item)
+  // console.log(item)
   const DateFormat = (date) => {
     const dateObject = new Date(date);
     const formattedDate = dateObject.toLocaleDateString("en-US", {
@@ -66,6 +66,16 @@ export default function DetailsModal({ isOpen, onClose, item }) {
                 Duration:{" "}
               </Text>
               {item.duration}
+              </Text>
+            ) : (
+              ""
+            )}
+            {item.address? (
+              <Text fontFamily="Georgia, serif">
+                <Text as="span" fontWeight="bold">
+                Address:{" "}
+              </Text>
+              {item.address}
               </Text>
             ) : (
               ""

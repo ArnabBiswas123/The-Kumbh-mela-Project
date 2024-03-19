@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 import Sections from "./Sections";
 import DetailsModal from "./DetailsModal";
 
-export default function CustomerDetails() {
+export default function EnquiryDetails() {
   const [customers, setCustomers] = useState([]);
   const navigate = useNavigate();
   const [fetchAgain,setFetchAgain]=useState(false);
@@ -33,7 +33,7 @@ export default function CustomerDetails() {
         navigate("/adminlogin");
       }
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}api/v1/customer/getallcustomer`,
+        `${process.env.REACT_APP_BACKEND_URL}api/v1/customer/getallenquiry`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -52,10 +52,12 @@ export default function CustomerDetails() {
   };
 
   const handleDelete = async (id) => {
+    console.log(id);
     try {
+
       const token=localStorage.getItem('token');
       const res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}api/v1/customer/deletecustomer/${id}`,
+        `${process.env.REACT_APP_BACKEND_URL}api/v1/customer/deleteenquiry/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -119,7 +121,7 @@ export default function CustomerDetails() {
         <Sections></Sections>
         
         <Box width={"80%"} ml={4} my={4} textAlign={"center"}>
-          <Text fontFamily="Georgia, serif" fontWeight={'bold'} fontSize={'x-large'} mb={2}>Customer Booking List</Text>
+          <Text fontFamily="Georgia, serif" fontWeight={'bold'} fontSize={'x-large'} mb={2}>Customer Enquiry List</Text>
           <TableContainer>
             <Table>
               <Thead bgColor={"white"}>
